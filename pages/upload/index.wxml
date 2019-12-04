@@ -1,0 +1,9 @@
+<wxs src="../wxs/indexOf.wxs" module="tools" />
+<view class="sousuo" style="border-bottom:#C4C4C4 solid 1px;width:100%">
+  <input type="text" placeholder="输入文字模糊筛选" bindinput="input_sousuo"/>
+</view>
+
+<view></view>
+<view class="list {{i%2==0?'left_view':''}}" wx:for="{{type_list}}" wx:for-item="item" wx:for-index="i" wx:if="{{tools.indexOf(item.name,sousuo_data)}}" bindtap="goList" data-index="{{i}}">
+  {{item.name}}
+</view>

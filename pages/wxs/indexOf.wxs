@@ -1,0 +1,9 @@
+//str2是否包含在str1中
+var indexOf = function (str1,str2) {
+  var is=false;
+  if (str1.indexOf(str2)>=0){
+    is=true
+  }
+  return is;
+}
+module.exports.indexOf = indexOf;

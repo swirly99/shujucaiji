@@ -1,0 +1,19 @@
+<view class="big_view">
+  <view class="u_name">
+    <view class="left">账 号：</view>
+    <view class="center"></view>
+    <view class="right">
+      <input bindinput="input_data" type="text" placeholder="请输入账号..."  data-id="username" value="{{username}}"/>
+    </view>
+  </view>
+  <view class="u_pass">
+    <view class="left">密 码：</view>
+    <view class="center"></view>
+    <view class="right">
+      <input bindinput="input_data" password placeholder="请输入密码..." data-id="password" value="{{password}}"/>
+    </view>
+  </view>
+  <view class="u_login">
+    <button bindtap="login">登 录</button>
+  </view>
+</view>

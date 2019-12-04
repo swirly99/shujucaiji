@@ -1,0 +1,17 @@
+<wxs src="../wxs/indexOf.wxs" module="tools" />
+<view class="sousuo" style="">
+  <input type="text" placeholder="输入文字模糊筛选" bindinput="input_sousuo" style="border-right:#C4C4C4 solid 1px;width:70%"/>
+  <input type="text" disabled="disabled" bindinput="input_sousuo" style="width:29.7%" value="添加" bindtap="add"/>
+</view>
+
+<view class="jg"></view>
+
+<view class="container">
+  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-index="{{index}}" wx:if="{{tools.indexOf(item.name,sousuo_data)}}">
+    <view class="content">{{item.name}}</view>
+    <view class="del" data-index="{{index}}">
+      <view class="caozuo" data-index="{{index}}" style="background:#6F79FF" bindtap="update">编辑</view>
+      <view class="caozuo" data-index="{{index}}" style="background-color: #FF2E2E" bindtap="del">删除</view>
+    </view>
+  </view>
+</view>
