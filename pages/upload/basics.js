@@ -11,10 +11,11 @@ Page({
   data: {
     key: '',//登录的key
     ctgId: '',//所属类
-    
+    imgs:['111'],
+
     name:'',// 名称
     userName:'',// 用户
-    status:'',// 营业状态：营业中、已停业
+    status:'营业',// 营业状态：营业中、已停业
     area:'',// 行政区划
     address:'',// 地址
     longitude:'',// (默认百度)经度
@@ -24,8 +25,8 @@ Page({
     tencentLongitude:'',// (腾讯)经度
     tencentLatitude:'',// (腾讯)纬度
     description:'',// 简介
-    typeImg: '',// 图标
-    longImg: '',// 标识图片
+    typeImg: '111',// 图标
+    longImg: '111',// 标识图片
     email:'',// 联系方式：传真、网址、邮箱、QQ、微 博、微信、微应用等
     phone:'',// 电话
     openTime: '',// 营业时间
@@ -66,6 +67,15 @@ Page({
     this.setData({
       [e.currentTarget.dataset.id]: e.detail.value,
     })
+    console.log(e.detail.value)
+  },
+  //普通文本框失去焦点验证
+  input_blur: function (e) {
+    if (e.detail.value == "") {
+      this.setData({
+        [e.currentTarget.dataset.id]: 0,
+      })
+    }
   },
   //滑动swiper，控制swiper页码
   change_swiper: function (e) {
@@ -119,7 +129,7 @@ Page({
     this.para.longImg=that.longImg
     this.para.email=that.email
     this.para.phone=that.phone
-    this.para.openTime=that.openTime
+    this.para.openTime=that.openTime+" 00:00:00"
     this.para.price=that.price
     this.para.institution=that.institution
     this.para.trafficLine=that.trafficLine
@@ -135,6 +145,7 @@ Page({
     this.para.website=that.website
     this.para.headName=that.headName
     this.para.headPhone=that.headPhone
+    this.para.imgs = that.imgs
     this.para.entity = this.entity
   },
 

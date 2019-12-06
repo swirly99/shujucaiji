@@ -29,7 +29,12 @@ Page({
   },
 
   del: function (e) {
-    console.log("删除", e.currentTarget.dataset.index)
+    getData.req("collection/ware_delete.jspx", "POST", { key: app.globalData.key, id: this.data.list[e.currentTarget.dataset.index].waresId }, res => {
+      console.log(res)
+      if (res.data.status == 200){
+        this.onShow();
+      }
+    })
   },
 
   add:function(e){
@@ -127,11 +132,7 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.entity.name
     })
-    getData.req("collection/ware_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId}, res => {
-      this.setData({
-        list: res.data.data
-      })
-    })
+    
   },
 
   /**
@@ -145,7 +146,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+        list: []
+    })
+    getData.req("collection/ware_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId }, res => {
+      this.setData({
+        list: res.data.data
+      })
+    })
   },
 
   /**
