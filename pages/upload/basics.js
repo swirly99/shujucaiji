@@ -23,9 +23,9 @@ Page({
     worldLatitude:'',// (天地)纬度
     tencentLongitude:'',// (腾讯)经度
     tencentLatitude:'',// (腾讯)纬度
-    description:'',// 简介——————后面
-    typeImg: '',// 图标——————后面
-    longImg: '',// 标识图片——————后面
+    description:'',// 简介
+    typeImg: '',// 图标
+    longImg: '',// 标识图片
     email:'',// 联系方式：传真、网址、邮箱、QQ、微 博、微信、微应用等
     phone:'',// 电话
     openTime: '',// 营业时间
@@ -53,11 +53,13 @@ Page({
     b_width: 340,
     view_index:0,
     region: ['浙江省', '杭州市', '萧山区'],
-    //坐标计算需要
-    PI : 3.1415926535897932384626,
   },
   entity:null,
+  //坐标计算需要
+  PI: 3.1415926535897932384626,
+  para: null,//传过去的参数整理
 
+  
 
   //普通文本框(下拉框)赋值
   input_value: function (e) {
@@ -87,7 +89,6 @@ Page({
   
   //特殊选择框————地址
   select_address:function(e){
-    console.log(e)
     this.setData({
       region: e.detail.value,
       province: e.detail.value[0],// 省
@@ -96,8 +97,46 @@ Page({
     })
   },
 
-  name: '',// 名称
-  userName: '',// 用户
+  //参数整理
+  finishing_para:function(){
+    var that=this.data
+    this.para=new Object()
+    this.para.key=that.key
+    this.para.ctgId=that.ctgId
+    this.para.name=that.name
+    this.para.userName=that.userName
+    this.para.status=that.status
+    this.para.area=that.area
+    this.para.address=that.address
+    this.para.longitude=that.longitude
+    this.para.latitude=that.latitude
+    this.para.worldLongitude=that.worldLongitude
+    this.para.worldLatitude=that.worldLatitude
+    this.para.tencentLongitude=that.tencentLongitude
+    this.para.tencentLatitude=that.tencentLatitude
+    this.para.description=that.description
+    this.para.typeImg=that.typeImg
+    this.para.longImg=that.longImg
+    this.para.email=that.email
+    this.para.phone=that.phone
+    this.para.openTime=that.openTime
+    this.para.price=that.price
+    this.para.institution=that.institution
+    this.para.trafficLine=that.trafficLine
+    this.para.environment=that.environment
+    this.para.zipCode=that.zipCode
+    this.para.businessLicense=that.businessLicense
+    this.para.unifiedCode=that.unifiedCode
+    this.para.province=that.province
+    this.para.city=that.city
+    this.para.country=that.country
+    this.para.parkInfo=that.parkInfo
+    this.para.capacity=that.capacity
+    this.para.website=that.website
+    this.para.headName=that.headName
+    this.para.headPhone=that.headPhone
+    this.para.entity = this.entity
+  },
 
   next:function(){
     if (this.data.name==''){
@@ -122,9 +161,10 @@ Page({
       })
       return
     }
-
-
-    console.log(this.entity)
+    this.finishing_para()
+    wx.navigateTo({
+      url: "../addOrUpdate/" + this.entity.code + "?data=" + encodeURIComponent(JSON.stringify(this.para))
+    })
   },
 
   /**
@@ -223,7 +263,7 @@ Page({
     return(lng < 72.004 || lng > 137.8347) || ((lat < 0.8293 || lat > 55.8271) || false);
   },
   transformlat:function(lng, lat) {
-    var that=this.data
+    var that=this
     var ret = -100.0 + 2.0 * lng + 3.0 * lat + 0.2 * lat * lat + 0.1 * lng * lat + 0.2 * Math.sqrt(Math.abs(lng));
     ret += (20.0 * Math.sin(6.0 * lng * that.PI) + 20.0 * Math.sin(2.0 * lng * that.PI)) * 2.0 / 3.0;
     ret += (20.0 * Math.sin(lat * that.PI) + 40.0 * Math.sin(lat / 3.0 * that.PI)) * 2.0 / 3.0;
@@ -232,7 +272,7 @@ Page({
   },
 
   transformlng:function(lng, lat) {
-    var that = this.data
+    var that = this
     var ret = 300.0 + lng + 2.0 * lat + 0.1 * lng * lng + 0.1 * lng * lat + 0.1 * Math.sqrt(Math.abs(lng));
     ret += (20.0 * Math.sin(6.0 * lng * that.PI) + 20.0 * Math.sin(2.0 * lng * that.PI)) * 2.0 / 3.0;
     ret += (20.0 * Math.sin(lng * that.PI) + 40.0 * Math.sin(lng / 3.0 * that.PI)) * 2.0 / 3.0;
