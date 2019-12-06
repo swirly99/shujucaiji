@@ -11,8 +11,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    username:'ceshi',
-    password:'1111'
+    username:'taishun',
+    password:'123456'
   },
 
   input_data:function(e){
@@ -24,6 +24,7 @@ Page({
   login:function(){
     getData.req("xcx/login.jspx","POST",this.data,res=>{
       if (res.data.status==200){
+        console.log(res.data.key)
         app.globalData.key = res.data.key
         wx.redirectTo({
           url: '../upload/index'

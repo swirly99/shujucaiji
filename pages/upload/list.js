@@ -11,15 +11,7 @@ Page({
     sousuo_data: '',
     startX: 0, //开始坐标
     startY: 0,
-    list:[
-      {
-        name:"1",
-        isTouchMove:false
-      },{
-        name: "2",
-        isTouchMove: false
-      }
-    ],
+    list:[],
     entity:null
   },
 
@@ -31,7 +23,9 @@ Page({
   },
 
   update:function(e){
-    console.log("修改",e.currentTarget.dataset.index)
+    wx.navigateTo({
+      url: "../addOrUpdate/" + this.data.entity.code + "?data=" + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+    })
   },
 
   del: function (e) {
@@ -52,14 +46,14 @@ Page({
                 })
               } else {
                 wx.navigateTo({
-                  url: "../addOrUpdate/" + this.data.entity.code + "?data=" + JSON.stringify(this.data.entity)
+                  url: "basics?data=" + JSON.stringify(this.data.entity)
                 })
               }
             }
           })
         }else{
           wx.navigateTo({
-            url: "../addOrUpdate/" + this.data.entity.code + "?data=" + JSON.stringify(this.data.entity)
+            url: "basics?data=" + JSON.stringify(this.data.entity)
           })
         }
       }

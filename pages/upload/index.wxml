@@ -5,5 +5,5 @@
 
 <view></view>
 <view class="list {{i%2==0?'left_view':''}}" wx:for="{{type_list}}" wx:for-item="item" wx:for-index="i" wx:if="{{tools.indexOf(item.name,sousuo_data)}}" bindtap="goList" data-index="{{i}}">
-  {{item.name}}
+  {{i+1}}、{{item.name}}
 </view>

@@ -46,7 +46,7 @@ App({
   },
   globalData: {
     userInfo: null,
-    key:'DQcojOXmxMVduAZ9ExoY/z3+QNDfuZlC1Z6c3W3CIaQ=',
+    key:'DQcojOXmxMUhGBbYaPr8eJ1v8/JDou+NhEmA3ho4Dm0=',
     file_url:''
   }
 })

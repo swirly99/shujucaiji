@@ -1,18 +1,19 @@
 page{
   width:100%;
   background:#F5F5F5;
+  overflow-x: hidden
 }
 
 view{
-  width:49.8%;
+  width:98%;
   height:80rpx;
   line-height:80rpx;
-  text-align:center;
 }
 
 .list{
   float:left;
-  border-bottom:#C4C4C4 solid 1px
+  border-bottom:#C4C4C4 solid 1px;
+  padding-left:0.4rem;
 }
 
 input{
@@ -29,7 +30,6 @@ input{
   background:#F5F5F5
 }
 .left_view{
-  border-right:#C4C4C4 solid 1px;
   position: relative;
   left:-1px
 }

@@ -1,0 +1,180 @@
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">名称： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入名称" bindinput="input_value" data-id="name" value="{{name}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">用户： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入用户" bindinput="input_value" data-id="userName" value="{{userName}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">营业状态： </text></view>
+          <view class="td_right" style="padding-top:25rpx;height:65rpx">
+            <radio-group class="radio-group" bindchange="input_value" data-id="status">
+              <radio wx:for-items="{{status_item}}" value="{{item.name}}" checked="{{item.checked}}"><text space="ensp">{{item.name}}    </text></radio>
+            </radio-group>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">营业时间： </text></view>
+          <view class="td_right">
+            <picker mode="date" bindchange="input_value" data-id="openTime" >
+              <view style="width:100%;height:100rpx;line-height:100rpx">{{openTime}}</view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">所在地： </text></view>
+          <view class="td_right">
+            <picker mode="region" bindchange="select_address" value="{{region}}">
+              <view style="width:100%;height:100rpx;line-height:100rpx">
+                {{region[0]}} - {{region[1]}} - {{region[2]}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">邮编： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入邮编" bindinput="input_value" data-id="zipCode" value="{{zipCode}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">行政区划： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入行政区划" bindinput="input_value" data-id="xzqh" value="{{xzqh}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">联系方式： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入联系方式" bindinput="input_value" data-id="email" value="{{email}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">电话： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入电话" bindinput="input_value" data-id="phone" value="{{phone}}"/>
+          </view>
+        </view>
+        
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">组织机构码： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入组织机构码" bindinput="input_value" data-id="institution" value="{{institution}}"/>
+          </view>
+        </view>
+
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">均价： </text></view>
+          <view class="td_right">
+            <input type="digit" placeholder="请输入均价" bindinput="input_value" data-id="price" value="{{price}}"/>
+          </view>
+        </view>
+        
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">营业执照号： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入营业执照号" bindinput="input_value" data-id="businessLicense" value="{{businessLicense}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">社会信用码： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入社会信用码" bindinput="input_value" data-id="unifiedCode" value="{{unifiedCode}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">交通路线： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入交通路线" bindinput="input_value" data-id="trafficLine" value="{{trafficLine}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">环境状况： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入环境状况" bindinput="input_value" data-id="environment" value="{{environment}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">停车位信息： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入停车位信息" bindinput="input_value" data-id="parkInfo" value="{{parkInfo}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">可容纳人数： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入可容纳人数" bindinput="input_value" data-id="capacity" value="{{capacity}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">网站域名： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入网站域名" bindinput="input_value" data-id="website" value="{{website}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">负责人姓名： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入负责人姓名" bindinput="input_value" data-id="headName" value="{{headName}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">负责人电话： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入负责人电话" bindinput="input_value" data-id="headPhone" value="{{headPhone}}"/>
+          </view>
+        </view>
+
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="float:right;width:{{b_width}}rpx" class="right_button">下一页</button>
+    </view>
+  </swiper-item>
+
+
+  <swiper-item>
+  <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">图标： </text></view>
+          <view class="td_right">
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">标识图片： </text></view>
+          <view class="td_right">
+          </view>
+        </view>
+
+        <view class="tr_view" style="height:304rpx;border:none">
+          <view class="td_left"><text space="ensp">简介： </text></view>
+          <view class="td_right">
+            <textarea maxlength="-1" placeholder="请输入简介" bindinput="input_value" data-id="description" value="{{description}}"></textarea>
+          </view>
+        </view>
+
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="next" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">填写其他信息</button>
+    </view>
+  </swiper-item>
+</swiper>

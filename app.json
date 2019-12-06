@@ -2,9 +2,8 @@
   "pages": [
     "pages/upload/index",
     "pages/upload/list",
+    "pages/upload/basics",
     "pages/addOrUpdate/jingqu",
-    "pages/addOrUpdate/zhusu",
-    "pages/addOrUpdate/lvxingshe",
     "pages/login/index"
   ],
   "window": {

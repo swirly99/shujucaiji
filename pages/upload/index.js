@@ -43,7 +43,6 @@ Page({
     }else{
       getData.req("collection/ctg_lsit.jspx", "POST", { key: app.globalData.key}, res => {
         if (res.data.status==200){
-          console.log(res.data.data)
           this.setData({
             type_list: res.data.data
           })

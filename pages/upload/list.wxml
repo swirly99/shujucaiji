@@ -1,6 +1,6 @@
 <wxs src="../wxs/indexOf.wxs" module="tools" />
 <view class="sousuo" style="">
-  <input type="text" placeholder="输入文字模糊筛选" bindinput="input_sousuo" style="border-right:#C4C4C4 solid 1px;width:70%"/>
+  <input type="text" placeholder="输入文字模糊筛选" bindinput="input_sousuo" style="border-right:#C4C4C4 solid 2rpx;width:70%"/>
   <input type="text" disabled="disabled" bindinput="input_sousuo" style="width:29.7%" value="添加" bindtap="add"/>
 </view>
 
