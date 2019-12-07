@@ -111,7 +111,6 @@ Page({
 
     var para = this.jc
     para.attr=qt
-    console.log(para)
 
     getData.req("collection/ctg_sava.jspx", "POST", para, res => {
       if (res.data.status == 200) {
