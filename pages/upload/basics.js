@@ -9,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    key: '',//登录的key
     ctgId: '',//所属类
     imgs:['111'],
 
@@ -30,7 +29,7 @@ Page({
     email:'',// 联系方式：传真、网址、邮箱、QQ、微 博、微信、微应用等
     phone:'',// 电话
     openTime: '',// 营业时间
-    price:'', // 均价
+    price:0.0, // 均价
     institution:'',// 组织机构代码
     trafficLine:'',// 交通路线
     environment:'',// 环境状况
@@ -45,6 +44,9 @@ Page({
     website:'',// 网站域名
     headName:'',// 负责人姓名
     headPhone:'',// 负责人电话
+    parkNum: 0,//停车场数量
+    telephone: '',//咨询和投诉电话
+    openHours: '',//营业时间
 
     //以上为基础数据值
     status_item: [
@@ -110,7 +112,7 @@ Page({
   finishing_para:function(){
     var that=this.data
     this.para=new Object()
-    this.para.key=that.key
+    this.para.key = app.globalData.key
     this.para.ctgId=that.ctgId
     this.para.name=that.name
     this.para.userName=that.userName
@@ -128,7 +130,7 @@ Page({
     this.para.longImg=that.longImg
     this.para.email=that.email
     this.para.phone=that.phone
-    this.para.openTime=that.openTime+" 00:00:00"
+    this.para.openTime=that.openTime
     this.para.price=that.price
     this.para.institution=that.institution
     this.para.trafficLine=that.trafficLine
@@ -145,7 +147,11 @@ Page({
     this.para.headName=that.headName
     this.para.headPhone=that.headPhone
     this.para.imgs = that.imgs
+    this.para.parkNum = that.parkNum
+    this.para.telephone = that.telephone
+    this.para.openHours = that.openHours
     this.para.entity = this.entity
+    this.para.id = that.waresId
   },
 
   next:function(){
@@ -181,37 +187,51 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this
     this.entity = JSON.parse(options.data)
+    var that = this
     wx.setNavigationBarTitle({
       title: "添加（" + this.entity.name + "_基础)"
     })
 
-    wx.getLocation({
-      type: 'wgs84',// 参考系
-      success: res => {
-        var lat = res.latitude
-        var lng = res.longitude
+    if (that.entity.wid==null){//添加
+      wx.getLocation({
+        type: 'wgs84',// 参考系
+        success: res => {
+          var lat = res.latitude
+          var lng = res.longitude
 
-        var ssws = that.wgs84togcj02(lng, lat)
-        ssws = that.gcj02tobd09(ssws[0], ssws[1])
-        //解决定位偏移
-        var ssssss1 = ssws[1] - 0.000160
-        var ssssss2 = ssws[0] - 0.000160
+          var ssws = that.wgs84togcj02(lng, lat)
+          ssws = that.gcj02tobd09(ssws[0], ssws[1])
+          //解决定位偏移
+          var ssssss1 = ssws[1] - 0.000160
+          var ssssss2 = ssws[0] - 0.000160
 
-        this.setData({
-          longitude: ssssss2.toFixed(6),
-          latitude: ssssss1.toFixed(6),
-          key: app.globalData.key,
-          ctgId: this.entity.ctgId
-        })
-      }
-    })
-
-    var t = new Date();
-    this.setData({
-      openTime: t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + t.getDate()
-    })
+          this.setData({
+            longitude: ssssss2.toFixed(6),
+            latitude: ssssss1.toFixed(6),
+            ctgId: this.entity.ctgId
+          })
+        }
+      })
+      var t = new Date();
+      this.setData({
+        openTime: t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + t.getDate()
+      })
+    }else{//修改
+      getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: that.entity.wid}, res => {
+        if (res.data.status == 200) {
+          this.setData(res.data.data)
+          this.data.status_item.forEach(v => {
+            v.checked = (v.name == this.data.status) ? true : false
+          })
+          this.data.region = [this.data.province, this.data.city, this.data.country]
+          this.setData({
+            status_item: this.data.status_item,
+            region: this.data.region
+          })
+        }
+      })
+    }
   },
 
   /**
@@ -302,7 +322,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
   },
 
   /**

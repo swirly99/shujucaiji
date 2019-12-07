@@ -23,8 +23,9 @@ Page({
   },
 
   update:function(e){
+    this.data.entity.wid = this.data.list[e.currentTarget.dataset.index].waresId
     wx.navigateTo({
-      url: "../addOrUpdate/" + this.data.entity.code + "?data=" + JSON.stringify(this.data.list[e.currentTarget.dataset.index])
+      url: "basics?data=" + JSON.stringify(this.data.entity)
     })
   },
 
@@ -37,6 +38,7 @@ Page({
   },
 
   add:function(e){
+    delete this.data.entity.wid
     wx.getSetting({
       success: res => {
         if (!res.authSetting["scope.userLocation"]) {

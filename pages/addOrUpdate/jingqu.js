@@ -11,11 +11,9 @@ Page({
   data: {
     dj:'',//等级(提交的时候需要整理)
     yyyf: '',//宜游月份
-    kfsj: '',//开放时间
     mpjg: '',//门票价格
     zyjd: '',//景点信息
     tjdl: '',//通景道路等级(提交的时候需要整理)
-    tcwsl: 0,//停车位数量
     wxts:'',//温馨提示
     xdsj: '',//向导手机号码
     vr: '',//VR 地址
@@ -25,7 +23,6 @@ Page({
     jjy: '',//讲解员
     yjdh: '',//应急救援电话
     yhzc: '',//优惠政策
-    zxts: '',//咨询和投诉电话
     jqdm: '',//景区大门
     jqssd: '',//景区舒适度
     lx:'',//类型
@@ -35,7 +32,49 @@ Page({
     dj_index:0,
     tjdl_items: ['高速公路','一级公路','二级公路','三级公路','四级公路'],
     tjdl_index:0,
-    lx_items: ['山脉','江河溪流','湖泊','泉水','洞窟','湿地','温泉','瀑布','森林','海滩','海岛','古迹','古塔','古镇','故居','园林','寺庙','博物馆','纪念馆','主题公园','海洋馆','动植物园','农家乐园','田园','宗教',' 民俗','影视','演艺','室内',' 赏花','水上乐园','采摘','购物','滑雪','游船','潜水','城市观光','摄影','漂流','红色旅游','其他'],
+    lx_items: [
+      {name:'山脉', checked:false},
+      {name:'江河溪流', checked:false},
+      {name:'湖泊', checked:false},
+      {name:'泉水', checked:false},
+      {name:'洞窟', checked:false},
+      {name:'湿地', checked:false},
+      {name:'温泉', checked:false},
+      {name:'瀑布', checked:false},
+      {name:'森林', checked:false},
+      {name:'海滩', checked:false},
+      {name:'海岛', checked:false},
+      {name:'古迹', checked:false},
+      {name:'古塔', checked:false},
+      {name:'古镇', checked:false},
+      {name:'故居', checked:false},
+      {name:'园林', checked:false},
+      {name:'寺庙', checked:false},
+      {name:'博物馆', checked:false},
+      {name:'纪念馆', checked:false},
+      {name:'主题公园', checked:false},
+      {name:'海洋馆', checked:false},
+      {name:'动植物园', checked:false},
+      {name:'农家乐园', checked:false},
+      {name:'田园', checked:false},
+      {name:'宗教', checked:false},
+      {name:'民俗', checked:false},
+      {name:'影视', checked:false},
+      {name:'演艺', checked:false},
+      {name:'室内', checked:false},
+      {name:'赏花', checked:false},
+      {name:'水上乐园', checked:false},
+      {name:'采摘', checked:false},
+      {name:'购物', checked:false},
+      {name:'滑雪', checked:false},
+      {name:'游船', checked:false},
+      {name:'潜水', checked:false},
+      {name:'城市观光', checked:false},
+      {name:'摄影', checked:false},
+      {name:'漂流', checked:false},
+      {name:'红色旅游', checked:false},
+      {name:'其他', checked:false}
+    ],
     b_width: 340,
     view_index: 0,
   },
@@ -80,7 +119,7 @@ Page({
     //下拉框数据处理
     var lx1="";
     this.data.lx.forEach(v=>{
-      lx1 += (v+",")
+      lx1 += (v + ",")
     })
     if(lx1.length>0){
       lx1=lx1.substr(0,lx1.length-1)
@@ -92,44 +131,62 @@ Page({
     qt.dj = this.data.dj_items[this.data.dj_index],
     qt.lx = lx1
     qt.yyyf=this.data.yyyf
-    qt.kfsj=this.data.kfsj
     qt.mpjg=this.data.mpjg
     qt.zyjd=this.data.zyjd
-    qt.tcwsl=this.data.tcwsl
     qt.xdsj=this.data.xdsj
     qt.vr=this.data.vr
     qt.jqch=this.data.jqch
-    qt.jqssd=this.data.jqssd
+    qt.jqss=this.data.jqss
     qt.lxjy=this.data.lxjy
     qt.jjy=this.data.jjy
     qt.yjdh=this.data.yjdh
     qt.yhzc=this.data.yhzc
-    qt.zxts=this.data.zxts
     qt.jqdm=this.data.jqdm
     qt.jqssd=this.data.jqssd
     qt.wxts = this.data.wxts
 
     var para = this.jc
     para.attr=qt
-
-    getData.req("collection/ctg_sava.jspx", "POST", para, res => {
-      if (res.data.status == 200) {
-        wx.showToast({
-          title: '添加成功',
-          icon: 'none',
-          duration: 2000
-        })
-        wx.navigateBack({
-          delta: 2
-        })
-      }else{
-        wx.showToast({
-          title: data.errMsg,
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    
+    if(para.id==null){
+      getData.req("collection/ctg_sava.jspx", "POST", para, res => {
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            duration: 2000
+          })
+          wx.navigateBack({
+            delta: 2
+          })
+        }else{
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }else{
+      getData.req("collection/ctg_update.jspx", "POST", para, res => {
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '修改成功',
+            icon: 'none',
+            duration: 2000
+          })
+          wx.navigateBack({
+            delta: 2
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
   },
 
 
@@ -143,6 +200,33 @@ Page({
     wx.setNavigationBarTitle({
       title: "添加（" + this.jc.entity.name + "_其他)"
     })
+    if (this.jc.id!=null){
+      getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
+        if (res.data.status == 200) {
+          this.setData(res.data.data)
+          this.data.dj_items.forEach((v,i)=>{//等级赋值
+            if (v == this.data.dj){
+              this.data.dj_index=i
+            }
+          })
+          this.data.tjdl_items.forEach((v, i) => {//通景道路
+            if (v == this.data.tjdl) {
+              this.data.tjdl_index = i
+            }
+          })
+          this.data.lx_items.forEach(v=>{
+            if(this.data.lx.indexOf(v.name)>-1){
+              v.checked=true
+            }
+          })
+          this.setData({
+            dj_index: this.data.dj_index,
+            tjdl_index: this.data.tjdl_index,
+            lx_items: this.data.lx_items
+          })
+        }
+      })
+    }
   },
 
   /**

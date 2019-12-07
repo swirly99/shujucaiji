@@ -19,12 +19,6 @@
           </view>
         </view>
         <view class="tr_view">
-          <view class="td_left"><text space="ensp">开放时间： </text></view>
-          <view class="td_right">
-            <input type="text" placeholder="例：5:30-18:00" bindinput="input_value" data-id="kfsj" value="{{kfsj}}"/>
-          </view>
-        </view>
-        <view class="tr_view">
           <view class="td_left"><text space="ensp">门票价格： </text></view>
           <view class="td_right">
             <input type="text" placeholder="例：免费、成人票：XX 元" bindinput="input_value" data-id="mpjg" value="{{mpjg}}"/>
@@ -53,12 +47,6 @@
           </view>
         </view>
         <view class="tr_view">
-          <view class="td_left"><text space="ensp">停车位数量： </text></view>
-          <view class="td_right">
-            <input type="number" placeholder="请输入停车位数量" bindinput="input_value" bindblur="input_blur" data-id="tcwsl" value="{{tcwsl}}"/>
-          </view>
-        </view>
-        <view class="tr_view">
           <view class="td_left"><text space="ensp">向导手机： </text></view>
           <view class="td_right">
             <input type="number" placeholder="请输入向导手机" bindinput="input_value" data-id="xdsj" value="{{xdsj}}"/>
@@ -70,14 +58,6 @@
             <input type="number" placeholder="请输入VR地址" bindinput="input_value" data-id="vr" value="{{vr}}"/>
           </view>
         </view>
-      </view>
-      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
-    </view>
-  </swiper-item>
-
-  <swiper-item>
-    <view class="bg_view">
-      <view style="width:100%;height:1020rpx">
         <view class="tr_view">
           <view class="td_left"><text space="ensp">景区称号： </text></view>
           <view class="td_right">
@@ -90,6 +70,14 @@
             <input type="text" placeholder="请输入景区设施" bindinput="input_value" data-id="jqss" value="{{jqss}}"/>
           </view>
         </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
         <view class="tr_view">
           <view class="td_left"><text space="ensp">线路建议： </text></view>
           <view class="td_right">
@@ -114,12 +102,7 @@
             <input type="text" placeholder="请输入优惠政策" bindinput="input_value" data-id="yhzc" value="{{yhzc}}"/>
           </view>
         </view>
-        <view class="tr_view">
-          <view class="td_left"><text space="ensp">咨询投诉： </text></view>
-          <view class="td_right">
-            <input type="text" placeholder="请输入咨询和投诉电话" bindinput="input_value" data-id="zxts" value="{{zxts}}"/>
-          </view>
-        </view>
+        
         <view class="tr_view">
           <view class="td_left"><text space="ensp">景区大门： </text></view>
           <view class="td_right">
@@ -146,7 +129,7 @@
           <view class="td_right" style="overflow-y: auto">
             <checkbox-group bindchange="input_value" data-id="lx">
               <view wx:for="{{lx_items}}" class="box">
-                <checkbox value="{{item}}" checked="{{item.checked}}"/>{{item}}
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
               </view>
             </checkbox-group>
           </view>
