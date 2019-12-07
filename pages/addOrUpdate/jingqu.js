@@ -222,7 +222,8 @@ Page({
           this.setData({
             dj_index: this.data.dj_index,
             tjdl_index: this.data.tjdl_index,
-            lx_items: this.data.lx_items
+            lx_items: this.data.lx_items,
+            lx: this.data.lx.split(",")
           })
         }
       })
