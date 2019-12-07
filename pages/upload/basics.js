@@ -67,7 +67,6 @@ Page({
     this.setData({
       [e.currentTarget.dataset.id]: e.detail.value,
     })
-    console.log(e.detail.value)
   },
   //普通文本框失去焦点验证
   input_blur: function (e) {

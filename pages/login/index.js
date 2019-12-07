@@ -24,7 +24,7 @@ Page({
   login:function(){
     getData.req("xcx/login.jspx","POST",this.data,res=>{
       if (res.data.status==200){
-        console.log(res.data.key)
+        
         app.globalData.key = res.data.key
         wx.redirectTo({
           url: '../upload/index'

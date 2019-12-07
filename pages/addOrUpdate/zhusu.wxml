@@ -1,2 +1,111 @@
-<!--pages/addOrUpdate/zhusu.wxml-->
-<text>pages/addOrUpdate/zhusu.wxml</text>
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">住宿类型： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入住宿类型" bindinput="input_value" data-id="zslx" value="{{zslx}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">等 级： </text></view>
+          <view class="td_right">
+            <picker bindchange="input_value" range="{{dj_items}}" data-id="dj_index">
+              <view class="picker">
+                {{dj_items[dj_index]}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">住宿分类： </text></view>
+          <view class="td_right">
+            <picker bindchange="input_value" range="{{zsfl_items}}" data-id="zsfl_index">
+              <view class="picker">
+                {{zsfl_items[zsfl_index]}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">住宿服务： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入住宿服务" bindinput="input_value" data-id="zsfw" value="{{zsfw}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">所获荣誉： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入所获荣誉" bindinput="input_value" data-id="shry" value="{{shry}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">酒店政策： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入酒店政策" bindinput="input_value" data-id="jdzc" value="{{jdzc}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">房间类型： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入房间类型" bindblur="input_blur" bindinput="input_value" data-id="fjlx" value="{{fjlx}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">房间数量： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入房间数量" bindblur="input_blur" bindinput="input_value" data-id="fjsl" value="{{fjsl}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">床位： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入床位" bindblur="input_blur" bindinput="input_value" data-id="cw" value="{{cw}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">房价： </text></view>
+          <view class="td_right">
+            <input type="digit" placeholder="请输入房价" bindblur="input_blur" bindinput="input_value" data-id="fj" value="{{fj}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">车位数量： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入车位数量" bindblur="input_blur" bindinput="input_value" data-id="cwsl" value="{{cwsl}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">信用卡： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入信用卡" bindinput="input_value" data-id="xyk" value="{{xyk}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">营业时间： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="例：5:30-18:00" bindinput="input_value" data-id="yysj" value="{{yysj}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left font_small"><text space="ensp">预订投诉电话： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入预订投诉电话" bindinput="input_value" data-id="ydtsdh" value="{{ydtsdh}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

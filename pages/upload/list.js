@@ -30,7 +30,6 @@ Page({
 
   del: function (e) {
     getData.req("collection/ware_delete.jspx", "POST", { key: app.globalData.key, id: this.data.list[e.currentTarget.dataset.index].waresId }, res => {
-      console.log(res)
       if (res.data.status == 200){
         this.onShow();
       }
