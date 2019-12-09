@@ -41,8 +41,9 @@
           <view class="td_left"><text space="ensp">所在地： </text></view>
           <view class="td_right">
             <picker mode="region" bindchange="select_address" value="{{region}}">
-              <view style="width:100%;height:100rpx;line-height:100rpx">
-                {{region[0]}} - {{region[1]}} - {{region[2]}}
+              <view class="img_view" style="width:100%;height:100rpx;line-height:100rpx">
+                <text space="ensp">{{region[0]}} - {{region[1]}} - {{region[2]}}   </text>
+                <image src="../img/icon_bottom.png" class="xl"/>
               </view>
             </picker>
           </view>
@@ -148,7 +149,7 @@
 
 
   <swiper-item>
-  <view class="bg_view">
+    <view class="bg_view">
       <view style="width:100%;height:1020rpx">
         <view class="tr_view">
           <view class="td_left"><text space="ensp">负责人姓名： </text></view>
@@ -174,17 +175,6 @@
             <input type="text" placeholder="请输入网站域名" bindinput="input_value" data-id="website" value="{{website}}"/>
           </view>
         </view>
-        <view class="tr_view">
-          <view class="td_left"><text space="ensp">图标： </text></view>
-          <view class="td_right">
-          </view>
-        </view>
-        <view class="tr_view">
-          <view class="td_left"><text space="ensp">标识图片： </text></view>
-          <view class="td_right">
-          </view>
-        </view>
-
         <view class="tr_view" style="height:304rpx;border:none">
           <view class="td_left"><text space="ensp">简介： </text></view>
           <view class="td_right">
@@ -193,7 +183,55 @@
         </view>
       </view>
       <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
-      <button bindtap="next" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">填写其他信息</button>
+      <button bindtap="bottom_view" style="float:right;width:{{b_width}}rpx" class="right_button">下一页</button>
+    </view>
+  </swiper-item>
+
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <!-- 图标 -->
+        <view class="tr_view" style="height:202rpx">
+          <view class="td_left" style="line-height:202rpx"><text space="ensp">图标： </text></view>
+          <view class="td_right" wx:if="{{file_url!='' && typeImg!=''}}">
+            <image src="{{file_url + typeImg}}" data-src="{{file_url + typeImg}}" data-src_list="{{[file_url + typeImg]}}" class="default_img" bindtap="show_img"/>
+            <image src="../img/img_colse.png" class="colse"  bindtap="delete_img" data-id="typeImg"/> 
+          </view>
+          <view class="td_right" wx:if="{{typeImg==''}}">
+            <image src="../img/img_add.png" class="default_img" bindtap="upload_img" data-id="typeImg" data-count="1"/>
+          </view>
+        </view>
+        <!-- 图标 -->
+
+        <!-- 标识图片 -->
+        <view class="tr_view" style="height:202rpx">
+          <view class="td_left" style="line-height:202rpx"><text space="ensp">标识图片： </text></view>
+          <view class="td_right" wx:if="{{file_url!='' && longImg!=''}}">
+            <image src="{{file_url+longImg}}" data-src="{{file_url+longImg}}" data-src_list="{{[file_url+longImg]}}" class="default_img"  bindtap="show_img"/>
+            <image src="../img/img_colse.png" class="colse" bindtap="delete_img" data-id="longImg"/> 
+          </view>
+          <view class="td_right" wx:if="{{longImg==''}}">
+            <image src="../img/img_add.png" class="default_img" wx:if="{{longImg==''}}" bindtap="upload_img" data-id="longImg" data-count="1"/>
+          </view>
+        </view>
+        <!-- 标识图片 -->
+
+        <!-- 图片集 -->
+        <view class="tr_view" style="height:80rpx;line-height:80rpx;text-align:center">图集</view>
+        <view class="tr_view" style="height:526rpx;border:none;overflow-y:auto;overflow-x:hidden">
+          <view class="default_img_view" wx:for="{{imgs}}" wx:for-item="item" wx:for-index="i" wx:if="{{imgs.length>0}}">
+            <image src="{{file_url+item}}" class="default_img" bindtap="show_img" data-src="{{file_url+item}}" data-src_list="{{imgs_arr}}"/>
+            <image src="../img/img_colse.png" class="colse" bindtap="delete_img" data-id="imgs" data-index="{{i}}"/>
+          </view>
+          <view class="default_img_view">
+            <image src="../img/img_add.png" class="default_img" bindtap="upload_img" data-id="imgs" data-count="9"/>
+          </view>
+        </view>
+        <!-- 图片集 -->
+
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="next" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:34rpx" class="right_button">填写其他信息</button>
     </view>
   </swiper-item>
 </swiper>

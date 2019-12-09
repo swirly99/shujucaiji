@@ -52,13 +52,37 @@ button{
 .right_button{position: relative;right:10px}
 
 
-picker image{
-  width:15px;
-  height:8px;
-  float:right;
+.xl{
+  width:13px;
+  height:7px;
+}
+.img_view{
+  display:flex;
+  align-items: center
+}
+.default_img{
+  height:180rpx;
+  width:180rpx;
+  border:#ccc solid 1px;
+  border-radius: 5px;
+  margin-top:10rpx;
+  float:left;
+}
+.default_img_view{
+  height:200rpx;
+  width:33%;
+  float:left;
   position: relative;
-  top:22px;
-  left:-20px
+  left:40rpx
+}
+
+.colse{
+  width:20px;
+  height:20px;
+  float:left;
+  position: relative;
+  left:-20px;
+  top:10rpx
 }
 textarea{
   width:92%;

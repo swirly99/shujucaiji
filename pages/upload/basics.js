@@ -10,7 +10,8 @@ Page({
    */
   data: {
     ctgId: '',//所属类
-    imgs:['111'],
+    imgs:[],
+    imgs_arr:[],
 
     name:'',// 名称
     userName:'',// 用户
@@ -24,8 +25,8 @@ Page({
     tencentLongitude:'',// (腾讯)经度
     tencentLatitude:'',// (腾讯)纬度
     description:'',// 简介
-    typeImg: '111',// 图标
-    longImg: '111',// 标识图片
+    typeImg: '',// 图标
+    longImg: '',// 标识图片
     email:'',// 联系方式：传真、网址、邮箱、QQ、微 博、微信、微应用等
     phone:'',// 电话
     openTime: '',// 营业时间
@@ -54,8 +55,9 @@ Page({
       { name: '停业', checked: false }
     ],
     b_width: 340,
-    view_index:0,
+    view_index:3,
     region: ['浙江省', '杭州市', '萧山区'],
+    file_url:null,
   },
   entity:null,
   //坐标计算需要
@@ -126,8 +128,8 @@ Page({
     this.para.tencentLongitude=that.tencentLongitude
     this.para.tencentLatitude=that.tencentLatitude
     this.para.description=that.description
-    this.para.typeImg=that.typeImg
-    this.para.longImg=that.longImg
+    this.para.typeImg = that.typeImg
+    this.para.longImg = that.longImg
     this.para.email=that.email
     this.para.phone=that.phone
     this.para.openTime=that.openTime
@@ -183,12 +185,99 @@ Page({
     })
   },
 
+  //图片上传
+  upload_img:function(e){
+    var msg =null
+    wx.chooseImage({
+      count: e.currentTarget.dataset.count, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: res => {
+        wx.showLoading({
+          mask: true,
+          title: '文件上传中...',
+        })
+        //上传到服务器
+        if (e.currentTarget.dataset.id=="imgs"){
+          res.tempFilePaths.forEach(v => {
+            getData.upload_img(v, suc => {
+              msg = JSON.parse(suc.data)
+              this.data.imgs.push(msg.url)
+              if (this.data.imgs.length >= res.tempFilePaths.length) {
+                wx.hideLoading()
+                this.setData({
+                  imgs: this.data.imgs
+                })
+                this.finishing_imgs();
+              }
+            }, fail => {
+              wx.hideLoading();
+              wx.showToast({
+                title: "第"+(this.data.imgs.length+1)+"张文件上传失败",
+                icon: 'none',
+                duration: 2000
+              })
+            })
+          })
+        }else{
+          getData.upload_img(res.tempFilePaths[0], res => {
+            msg = JSON.parse(res.data)
+            this.setData({
+              [e.currentTarget.dataset.id]: msg.url
+            })
+            wx.hideLoading()
+          }, fail => {
+            wx.hideLoading();
+            wx.showToast({
+              title: '文件上传失败',
+              icon: 'none',
+              duration: 2000
+            })
+          })
+        }
+      }
+    })
+  },
+  //删除图片
+  delete_img:function(e){
+    if (e.currentTarget.dataset.id =="imgs"){
+      this.data.imgs.splice(e.currentTarget.dataset.index, 1);
+      this.setData({
+        imgs: this.data.imgs
+      })
+    }else{
+      this.setData({
+        [e.currentTarget.dataset.id]: '',
+      })
+    }
+  },
+  finishing_imgs:function(){
+    var arr= []
+    this.data.imgs.forEach(v=>{
+      arr.push(this.data.file_url+v)
+    })
+    this.setData({
+      imgs_arr: arr
+    })
+  },
+  //游览图片
+  show_img:function(e){
+    wx.previewImage({
+      current: e.currentTarget.dataset.src, // 当前显示图片的http链接
+      urls: e.currentTarget.dataset.src_list // 需要预览的图片http链接列表
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.entity = JSON.parse(options.data)
     var that = this
+    this.setData({
+      file_url: app.globalData.file_url
+    })
+
     wx.setNavigationBarTitle({
       title: "添加（" + this.entity.name + "_基础)"
     })
@@ -215,7 +304,7 @@ Page({
       })
       var t = new Date();
       this.setData({
-        openTime: t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + t.getDate()
+        openTime: t.getFullYear() + "-" + (t.getMonth() + 1) + "-" + t.getDate(),
       })
     }else{//修改
       getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: that.entity.wid}, res => {
@@ -224,11 +313,18 @@ Page({
           this.data.status_item.forEach(v => {
             v.checked = (v.name == this.data.status) ? true : false
           })
+          var imgs_arr=[];
+          this.data.imgs.forEach(v=>{
+            imgs_arr.push(v.imgPath)
+          })
+
           this.data.region = [this.data.province, this.data.city, this.data.country]
           this.setData({
             status_item: this.data.status_item,
-            region: this.data.region
+            region: this.data.region,
+            imgs: imgs_arr
           })
+          this.finishing_imgs();
         }
       })
     }
