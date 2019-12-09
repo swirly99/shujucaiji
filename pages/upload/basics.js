@@ -55,7 +55,7 @@ Page({
       { name: '停业', checked: false }
     ],
     b_width: 340,
-    view_index:3,
+    view_index:0,
     region: ['浙江省', '杭州市', '萧山区'],
     file_url:null,
   },

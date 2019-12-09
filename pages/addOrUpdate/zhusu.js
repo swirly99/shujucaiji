@@ -24,7 +24,7 @@ Page({
     fjlx:'',//房间类型
 
 
-    dj_items: ['未定级别', 'AAAAA', 'AAAA', 'AAA', 'AA', 'A'],
+    dj_items: ['白金宿', '金宿', '银宿', '特色民宿', '其他'],
     dj_index: 0,
     zsfl_items: ['星级宾馆','商务宾馆','度假酒店','酒店公寓','青年旅社','招待所','特色主题酒店'],
     zsfl_index:0,
@@ -86,25 +86,45 @@ Page({
     var para = this.jc
     para.attr = qt
 
-    getData.req("collection/ctg_sava.jspx", "POST", para, res => {
-      if (res.data.status == 200) {
-        wx.showToast({
-          title: '添加成功',
-          icon: 'none',
-          duration: 2000
-        })
-        wx.navigateBack({
-          delta: 2
-        })
-      } else {
-        wx.showToast({
-          title: data.errMsg,
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
-
+    if (para.id == null) {
+      getData.req("collection/ctg_sava.jspx", "POST", para, res => {
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '添加成功',
+            icon: 'none',
+            duration: 2000
+          })
+          wx.navigateBack({
+            delta: 2
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }else{
+      getData.req("collection/ctg_update.jspx", "POST", para, res => {
+        if (res.data.status == 200) {
+          wx.showToast({
+            title: '修改成功',
+            icon: 'none',
+            duration: 2000
+          })
+          wx.navigateBack({
+            delta: 2
+          })
+        } else {
+          wx.showToast({
+            title: res.data.message,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      })
+    }
   },
 
 
@@ -116,6 +136,31 @@ Page({
     wx.setNavigationBarTitle({
       title: "添加（" + this.jc.entity.name + "_其他)"
     })
+
+    if (this.jc.id != null) {
+      getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
+        if (res.data.status == 200) {
+          this.setData(res.data.data)
+
+          console.log(res.data.data)
+
+          this.data.dj_items.forEach((v,i)=>{
+            if (v == this.data.dj) {
+              this.data.dj_index = i
+            }
+          })
+          this.data.zsfl_items.forEach((v, i) => {
+            if (v == this.data.zsfl) {
+              this.data.zsfl_index = i
+            }
+          })
+          this.setData({
+            dj_index: this.data.dj_index,
+            zsfl_index: this.data.zsfl_index
+          })
+        }
+      })
+    }
   },
 
   /**
