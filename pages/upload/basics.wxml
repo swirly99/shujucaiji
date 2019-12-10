@@ -27,7 +27,7 @@
           <view class="td_left"><text space="ensp">开业时间： </text></view>
           <view class="td_right">
             <picker mode="date" bindchange="input_value" data-id="openTime" >
-              <view style="width:100%;height:100rpx;line-height:100rpx">{{openTime}}</view>
+              <view style="width:100%;height:100rpx;line-height:100rpx">{{openTime}}<image src="../img/icon_bottom.png" class="xl"/></view>
             </picker>
           </view>
         </view>
@@ -41,8 +41,8 @@
           <view class="td_left"><text space="ensp">所在地： </text></view>
           <view class="td_right">
             <picker mode="region" bindchange="select_address" value="{{region}}">
-              <view class="img_view" style="width:100%;height:100rpx;line-height:100rpx">
-                <text space="ensp">{{region[0]}} - {{region[1]}} - {{region[2]}}   </text>
+              <view style="width:100%;height:100rpx;line-height:100rpx">
+                {{region[0]}} - {{region[1]}} - {{region[2]}}
                 <image src="../img/icon_bottom.png" class="xl"/>
               </view>
             </picker>

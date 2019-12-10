@@ -14,7 +14,7 @@
           <view class="td_right">
             <picker bindchange="input_value" range="{{dj_items}}" data-id="dj_index">
               <view class="picker">
-                {{dj_items[dj_index]}}
+                {{dj_items[dj_index]}}<image src="../img/icon_bottom.png" class="xl"/>
               </view>
             </picker>
           </view>
@@ -24,7 +24,7 @@
           <view class="td_right">
             <picker bindchange="input_value" range="{{zsfl_items}}" data-id="zsfl_index">
               <view class="picker">
-                {{zsfl_items[zsfl_index]}}
+                {{zsfl_items[zsfl_index]}}<image src="../img/icon_bottom.png" class="xl"/>
               </view>
             </picker>
           </view>

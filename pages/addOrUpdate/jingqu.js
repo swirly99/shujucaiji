@@ -1,6 +1,11 @@
 // pages/upload/index.js
 import { GetData } from "../../utils/GetData.js"
+import { SaveOrUpdate } from "../../utils/SaveOrUpdate.js"
+import { PositionStr } from "../../utils/PositionStr.js"
+
 const getData = new GetData()
+const saveOrUpdate = new SaveOrUpdate()
+const positionStr = new PositionStr()
 const app = getApp()
 
 Page({
@@ -118,10 +123,10 @@ Page({
   submit:function(){
     //下拉框数据处理
     var lx1="";
-    this.data.lx.forEach(v=>{
-      lx1 += (v + ",")
-    })
-    if(lx1.length>0){
+    if (this.data.lx.length>0){
+      this.data.lx.forEach(v=>{
+        lx1 += (v + ",")
+      })
       lx1=lx1.substr(0,lx1.length-1)
     }
     
@@ -147,46 +152,8 @@ Page({
 
     var para = this.jc
     para.attr=qt
-    
-    if(para.id==null){
-      getData.req("collection/ctg_sava.jspx", "POST", para, res => {
-        if (res.data.status == 200) {
-          wx.showToast({
-            title: '添加成功',
-            icon: 'none',
-            duration: 2000
-          })
-          wx.navigateBack({
-            delta: 2
-          })
-        }else{
-          wx.showToast({
-            title: res.data.message,
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      })
-    }else{
-      getData.req("collection/ctg_update.jspx", "POST", para, res => {
-        if (res.data.status == 200) {
-          wx.showToast({
-            title: '修改成功',
-            icon: 'none',
-            duration: 2000
-          })
-          wx.navigateBack({
-            delta: 2
-          })
-        } else {
-          wx.showToast({
-            title: res.data.message,
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      })
-    }
+
+    saveOrUpdate.post_data(para)
   },
 
 
@@ -204,26 +171,10 @@ Page({
       getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
         if (res.data.status == 200) {
           this.setData(res.data.data)
-          this.data.dj_items.forEach((v,i)=>{//等级赋值
-            if (v == this.data.dj){
-              this.data.dj_index=i
-            }
-          })
-          this.data.tjdl_items.forEach((v, i) => {//通景道路
-            if (v == this.data.tjdl) {
-              this.data.tjdl_index = i
-            }
-          })
-          this.data.lx_items.forEach(v=>{
-            if(this.data.lx.indexOf(v.name)>-1){
-              v.checked=true
-            }
-          })
           this.setData({
-            dj_index: this.data.dj_index,
-            tjdl_index: this.data.tjdl_index,
-            lx_items: this.data.lx_items,
-            lx: this.data.lx.split(",")
+            dj_index: positionStr.radio_position(this.data.dj_items, this.data.dj),
+            tjdl_index: positionStr.radio_position(this.data.tjdl_items, this.data.tjdl),
+            lx_items: positionStr.check_position(this.data.lx_items, this.data.ywfw)
           })
         }
       })

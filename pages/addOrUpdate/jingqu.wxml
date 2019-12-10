@@ -7,7 +7,7 @@
           <view class="td_right">
             <picker bindchange="input_value" range="{{dj_items}}" data-id="dj_index">
               <view class="picker">
-                {{dj_items[dj_index]}}
+                {{dj_items[dj_index]}}<image src="../img/icon_bottom.png" class="xl"/>
               </view>
             </picker>
           </view>
@@ -35,7 +35,7 @@
           <view class="td_right">
             <picker bindchange="input_value" range="{{tjdl_items}}" data-id="tjdl_index">
               <view class="picker">
-                {{tjdl_items[tjdl_index]}}
+                {{tjdl_items[tjdl_index]}}<image src="../img/icon_bottom.png" class="xl"/>
               </view>
             </picker>
           </view>
