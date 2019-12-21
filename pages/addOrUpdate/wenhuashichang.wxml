@@ -1,2 +1,37 @@
 <!--pages/addOrUpdate/wenhuashichang.wxml-->
-<text>pages/addOrUpdate/wenhuashichang.wxml</text>
+<!-- <text>pages/addOrUpdate/wenhuashichang.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">定编人数：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入定编人数" bindinput="input_value" data-id="ordering" value="{{ordering}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">在岗人数：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入在岗人数" bindinput="input_value" data-id="duty" value="{{duty}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:40%"><text space="ensp">协助执法人员数：</text></view>
+          <view class="td_right"style="width:60%">
+            <input type="number" placeholder="请输入协助执法人员数" bindinput="input_value" data-id="assisting" value="{{assisting}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">上级单位名称：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入上级单位名称" bindinput="input_value" data-id="company" value="{{company}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+
+
