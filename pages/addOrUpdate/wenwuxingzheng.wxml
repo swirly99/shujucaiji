@@ -1,2 +1,93 @@
 <!--pages/addOrUpdate/wenwuxingzheng.wxml-->
-<text>pages/addOrUpdate/wenwuxingzheng.wxml</text>
+<!-- <text>pages/addOrUpdate/wenwuxingzheng.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:250rpx">
+          <view class="td_left" style="width:27%"><text space="ensp">单位性质：</text></view>
+          <view class="td_right" style="overflow-y: auto;width:73%">
+            <checkbox-group bindchange="input_value" data-id="UnitType">
+              <view wx:for="{{UnitType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">行政级别:</text></view>
+          <view class="td_right">
+             <picker bindchange="input_value" range="{{level_items}}" data-id="level_index">
+              <view class="picker">
+                <text class="picker_text">{{level_items[level_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">从业人员数：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入从业人员数" bindinput="input_value" data-id="practitioners" value="{{practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:51%"><text space="ensp">在编文物从业人员数：</text></view>
+          <view class="td_right" style="width:49%">
+            <input type="number" placeholder="请输入从业人员数" bindinput="input_value" data-id="editing" value="{{editing}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:51%"><text space="ensp">其他文物从业人员数：</text></view>
+          <view class="td_right" style="width:49%">
+            <input type="number" placeholder="请输入从业人员数" bindinput="input_value" data-id="other" value="{{other}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">本辖区不可移动文物（处）：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入本辖区不可移动文物（处）的数量" bindinput="input_value" data-id="immovable" value="{{immovable}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">本辖区不可移动文物(处)-全国重点文物保护单位：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入全国重点文物保护单位的数量" bindinput="input_value" data-id="country" value="{{country}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">本辖区不可移动文物(处)-省级文物保护单位：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入省级文物保护单位的数量" bindinput="input_value" data-id="provincial" value="{{provincial}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">本辖区不可移动文物(处)-市县级文物保护单位：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入市县级文物保护单位的数量" bindinput="input_value" data-id="city" value="{{city}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">对外开放或利用省级及以上文物保护单位数：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="对外开放或利用省级及以上文物保护单位数" bindinput="input_value" data-id="open" value="{{open}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">本级出台地方性文 物业法规、规章：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="本级出台地方性文 物业法规、规章" bindinput="input_value" data-id="local" value="{{local}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
