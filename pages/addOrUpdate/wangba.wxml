@@ -1,2 +1,54 @@
 <!--pages/addOrUpdate/wangba.wxml-->
-<text>pages/addOrUpdate/wangba.wxml</text>
+<!-- <text>pages/addOrUpdate/wangba.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:150rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">网络文化经营许可证发证机关： </text>
+            <textarea  placeholder="请输入网络文化经营许可证发证机关" bindinput="input_value" data-id="authority" value="{{authority}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">许可证号： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="text" placeholder="请输入许可证号" bindinput="input_value" data-id="Licensekey" value="{{Licensekey}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">终端数量： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入终端数量" bindinput="input_value" data-id="TerminalNum" value="{{TerminalNum}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">经营面积： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="text" placeholder="请输入经营面积" bindinput="input_value" data-id="area" value="{{area}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">每天营业时间： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="text" placeholder="请输入每天营业时间" bindinput="input_value" data-id="time" value="{{time}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">上网价格： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="text" placeholder="请输入上网价格" bindinput="input_value" data-id="price" value="{{price}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+

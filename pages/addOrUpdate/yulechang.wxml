@@ -1,2 +1,33 @@
 <!--pages/addOrUpdate/yulechang.wxml-->
-<text>pages/addOrUpdate/yulechang.wxml</text>
+<!-- <text>pages/addOrUpdate/yulechang.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:650rpx">
+          <view class="td_left"><text space="ensp">服务类型： </text></view>
+          <view class="td_right" style="overflow-y: auto">
+            <checkbox-group bindchange="input_value" data-id="ytype">
+              <view wx:for="{{ytype_items}}" class="box">
+               <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">信用卡类型： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入信用卡类型" bindinput="input_value" data-id="card" value="{{card}}"/>
+          </view>
+        </view>
+         <view class="tr_view" style="height:250rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">环境： </text>
+            <textarea  placeholder="请输入环境" bindinput="input_value" data-id="env" value="{{env}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

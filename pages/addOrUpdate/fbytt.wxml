@@ -1,2 +1,47 @@
 <!--pages/addOrUpdate/fbytt.wxml-->
-<text>pages/addOrUpdate/fbytt.wxml</text>
+<!-- <text>pages/addOrUpdate/fbytt.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:530rpx">
+          <view class="td_left" style="width:37%"><text space="ensp">登记注册类型： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:63%">
+            <checkbox-group bindchange="input_value" data-id="RgeType">
+              <view wx:for="{{RgeType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">剧种分类代码： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="text" placeholder="请输入剧种分类代码" bindinput="input_value" data-id="PlayCode" value="{{PlayCode}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">专业技术人才： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入专业技术人才" bindinput="input_value" data-id="professional" value="{{professional}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">演员数： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入演员数" bindinput="input_value" data-id="ActorsNum" value="{{ActorsNum}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+
+

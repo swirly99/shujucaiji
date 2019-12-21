@@ -1,2 +1,43 @@
 <!--pages/addOrUpdate/cesuo.wxml-->
-<text>pages/addOrUpdate/cesuo.wxml</text>
+<!-- <text>pages/addOrUpdate/cesuo.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">厕所级别： </text></view>
+          <view class="td_right">
+            <picker bindchange="input_value" range="{{ToiletClass_items}}" data-id="ToiletClass_index">
+              <view class="picker">
+                {{ToiletClass_items[ToiletClass_index]}}<image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">所属景区名称： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入所属景区名称" bindinput="input_value" data-id="scenic" value="{{scenic}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left"><text space="ensp">特色设施： </text></view>
+          <view class="td_right" style="overflow-y: auto">
+            <checkbox-group bindchange="input_value" data-id="facilities">
+              <view wx:for="{{facilities_items}}" class="box">
+               <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">业主单位： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入业主单位" bindinput="input_value" data-id="OwnerUnit" value="{{OwnerUnit}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

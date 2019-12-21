@@ -90,7 +90,7 @@
         <view class="tr_view">
           <view class="td_left"><text space="ensp">均价： </text></view>
           <view class="td_right">
-            <input type="digit" placeholder="请输入均价" bindinput="input_value" data-id="price" value="{{price}}"/>
+            <input type="digit" placeholder="请输入均价" bindinput="input_value" bindblur="input_blur" data-id="price" value="{{price}}"/>
           </view>
         </view>
         <view class="tr_view">

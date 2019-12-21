@@ -87,6 +87,7 @@ Page({
   
   //(普通文本框 || 普通下拉框 || 时间下拉框 || 普通复选框)赋值
   input_value: function (e) {
+    console.log(e.detail.value)
     this.setData({
       [e.currentTarget.dataset.id]: e.detail.value,
     })
@@ -171,10 +172,12 @@ Page({
       getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
         if (res.data.status == 200) {
           this.setData(res.data.data)
+          console.log(this.data.lx)
           this.setData({
             dj_index: positionStr.radio_position(this.data.dj_items, this.data.dj),
             tjdl_index: positionStr.radio_position(this.data.tjdl_items, this.data.tjdl),
-            lx_items: positionStr.check_position(this.data.lx_items, this.data.ywfw)
+            lx_items: positionStr.check_position(this.data.lx_items, this.data.lx),
+            lx:(this.data.lx=='')?(''):(this.data.lx.split(","))
           })
         }
       })

@@ -1,2 +1,152 @@
 <!--pages/addOrUpdate/wenhuazhan.wxml-->
-<text>pages/addOrUpdate/wenhuazhan.wxml</text>
+<!-- <text>pages/addOrUpdate/wenhuazhan.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:530rpx">
+          <view class="td_left" style="width:37%"><text space="ensp">登记注册类型： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:63%">
+            <checkbox-group bindchange="input_value" data-id="RegType">
+              <view wx:for="{{RegType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left" style="width:27%"><text space="ensp">隶属： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:73%">
+            <checkbox-group bindchange="input_value" data-id="subjection">
+              <view wx:for="{{subjection_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">主体建成年份： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="text" placeholder="请输入主体建成年份" bindinput="input_value" data-id="year" value="{{year}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">专职人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Professional" value="{{Professional}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">在编人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Editor" value="{{Editor}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">专业技术人才：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入专业技术人才" bindinput="input_value" data-id="technical" value="{{technical}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:18%"><text space="ensp">藏书：</text></view>
+          <view class="td_right" style="width:82%">
+            <input type="text" placeholder="请输入藏书" bindinput="input_value" data-id="book" value="{{book}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:22%"><text space="ensp">计算机：</text></view>
+          <view class="td_right" style="width:78%">
+            <input type="text" placeholder="请输入计算机" bindinput="input_value" data-id="computer" value="{{computer}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:52%"><text space="ensp">实际使用房屋建筑面积：</text></view>
+          <view class="td_right" style="width:48%">
+            <input type="text" placeholder="请输使用房屋建筑面积" bindinput="input_value" data-id="area" value="{{area}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">志愿者服务队伍数： </text></view>
+          <view class="td_right" style="width:54%">
+            <input type="number" placeholder="请输入志愿者服务队伍数" bindinput="input_value" data-id="TeamsSum" value="{{TeamsSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">志愿者服务队人数： </text></view>
+          <view class="td_right" style="width:54%">
+            <input type="number" placeholder="请输入志愿者服务队人数" bindinput="input_value" data-id="PeopleSum" value="{{PeopleSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view style="width:100%;padding-left:30rpx;color:#808080;"><text space="ensp">辖区内社区综合文化服务中心：</text></view>
+          <view style="width:100%;padding-left:30rpx;">
+            <input type="number" placeholder="请输入辖区内社区综合文化服务中心" bindinput="input_value" data-id="SServiceCentre" value="{{SServiceCentre}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view style="width:100%;padding-left:30rpx;color:#808080;"><text space="ensp">辖区内社区综合文化服务中心面积：</text></view>
+          <view style="width:100%;padding-left:30rpx;">
+            <input type="text" placeholder="请输入辖区内社区综合文化服务中心面积" bindinput="input_value" data-id="SServiceCentreArea" value="{{SServiceCentreArea}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view style="width:100%;padding-left:30rpx;color:#808080;"><text space="ensp">辖区内村综合文化服务中心：</text></view>
+          <view style="width:100%;padding-left:30rpx;">
+            <input type="number" placeholder="请输入辖区内村综合文化服务中心" bindinput="input_value" data-id="CServiceCentre" value="{{CServiceCentre}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="float:right;width:{{b_width}}rpx;font-size:36rpx" class="right_button">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view style="width:100%;padding-left:30rpx;color:#808080;"><text space="ensp">辖区内村综合文化服务中心面积：</text></view>
+          <view style="width:100%;padding-left:30rpx;">
+            <input type="text" placeholder="请输入辖区内村综合文化服务中心面积" bindinput="input_value" data-id="CServiceCentreArea" value="{{CServiceCentreArea}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">产权归属：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入产权归属" bindinput="input_value" data-id="ownership" value="{{ownership}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">发放借书证数：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入发放借书证数" bindinput="input_value" data-id="LibraryCard" value="{{LibraryCard}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">阅览座位数：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入阅览座位数" bindinput="input_value" data-id="seat" value="{{seat}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+
+
+

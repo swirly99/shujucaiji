@@ -1,2 +1,58 @@
 <!--pages/addOrUpdate/gouwuchangsuo.wxml-->
-<text>pages/addOrUpdate/gouwuchangsuo.wxml</text>
+<!-- <text>pages/addOrUpdate/gouwuchangsuo.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:650rpx">
+          <view class="td_left"><text space="ensp">服务类型： </text></view>
+          <view class="td_right" style="overflow-y: auto">
+            <checkbox-group bindchange="input_value" data-id="ftype">
+              <view wx:for="{{ftype_items}}" class="box">
+               <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" style="height:300rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">特色食物： </text>
+            <textarea  placeholder="请输入特色食物" bindinput="input_value" data-id="SpeFood" value="{{SpeFood}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:300rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">外部环境： </text>
+            <textarea  placeholder="请输入外部环境" bindinput="input_value" data-id="ExternalEnv" value="{{ExternalEnv}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">面积： </text></view>
+          <view class="td_right">
+            <input type="digit" placeholder="请输入面积" bindinput="input_value" data-id="space" value="{{space}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">官方推荐:</text></view>
+          <view class="td_right" >
+             <picker bindchange="input_value" range="{{OffRec_items}}" data-id="OffRec_index">
+              <view class="picker">
+                <text class="picker_text">{{OffRec_items[OffRec_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

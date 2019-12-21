@@ -1,2 +1,72 @@
 <!--pages/addOrUpdate/yulechangsuo.wxml-->
-<text>pages/addOrUpdate/yulechangsuo.wxml</text>
+<!-- <text>pages/addOrUpdate/yulechangsuo.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left" style="width:28%"><text space="ensp">机构分组： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:72%">
+            <checkbox-group bindchange="input_value" data-id="Institutional">
+              <view wx:for="{{Institutional_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:60%"><text space="ensp">是否使用 VOD 点播 系统: </text></view>
+          <view class="td_right"style="width:40%">
+             <picker bindchange="input_value" range="{{isVOD_items}}" data-id="isVOD_index">
+              <view class="picker">
+                <text class="picker_text">{{isVOD_items[isVOD_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left" style="width:37%"><text space="ensp">曲库情况： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:63%">
+            <checkbox-group bindchange="input_value" data-id="QuSituation">
+              <view wx:for="{{QuSituation_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">娱乐经营许可证发证机关： </text>
+            <textarea  placeholder="请输入娱乐经营许可证发证机关" bindinput="input_value" data-id="authority" value="{{authority}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:44%"><text space="ensp">游戏游艺设备数量：</text></view>
+          <view class="td_right" style="width:56%">
+            <input type="number" placeholder="请输入游戏游艺设备数量" bindinput="input_value" data-id="EquipmentNum" value="{{EquipmentNum}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:57%"><text space="ensp">游戏游艺设备进出口数量：</text></view>
+          <view class="td_right" style="width:43%">
+            <input type="number" placeholder="请输入进出口数量" bindinput="input_value" data-id="IEEquipmentNum" value="{{IEEquipmentNum}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">建筑面积： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="text" placeholder="请输入建筑面积" bindinput="input_value" data-id="area" value="{{area}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

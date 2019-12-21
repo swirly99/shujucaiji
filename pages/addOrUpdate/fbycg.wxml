@@ -1,2 +1,67 @@
 <!--pages/addOrUpdate/fbycg.wxml-->
-<text>pages/addOrUpdate/fbycg.wxml</text>
+<!-- <text>pages/addOrUpdate/fbycg.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left" style="width:37%"><text space="ensp">登记注册类型： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:63%">
+            <checkbox-group bindchange="input_value" data-id="RegTypt">
+              <view wx:for="{{RegTypt_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left" style="width:28%"><text space="ensp">机构分组： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:72%">
+            <checkbox-group bindchange="input_value" data-id="Institutional">
+              <view wx:for="{{Institutional_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:44%"><text space="ensp">主体建筑建成年份：</text></view>
+          <view class="td_right" style="width:56%">
+            <input type="text" placeholder="请输入主体建筑建成年份" bindinput="input_value" data-id="year" value="{{year}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:40%"><text space="ensp">是否儿童剧场: </text></view>
+          <view class="td_right"style="width:60%">
+             <picker bindchange="input_value" range="{{children_items}}" data-id="children_index">
+              <view class="picker">
+                <text class="picker_text">{{children_items[children_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        
+        <view class="tr_view" >
+          <view class="td_left" style="width:35%"><text space="ensp">专业技术人才：</text></view>
+          <view class="td_right" style="width:65%">
+            <input type="number" placeholder="请输入专业技术人才" bindinput="input_value" data-id="Professional" value="{{Professional}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">坐席数： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="text" placeholder="请输入建坐席数" bindinput="input_value" data-id="seats" value="{{seats}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

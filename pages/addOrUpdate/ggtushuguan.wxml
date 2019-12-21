@@ -1,2 +1,258 @@
 <!--pages/addOrUpdate/ggtushuguan.wxml-->
-<text>pages/addOrUpdate/ggtushuguan.wxml</text>
+<!-- <text>pages/addOrUpdate/ggtushuguan.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:600rpx">
+          <view class="td_left" style="width:37%"><text space="ensp">登记注册类型： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:63%">
+            <checkbox-group bindchange="input_value" data-id="RgeType">
+              <view wx:for="{{RgeType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">是否少儿图书馆:</text></view>
+          <view class="td_right" >
+             <picker bindchange="input_value" range="{{isChildren_items}}" data-id="isChildren_index">
+              <view class="picker">
+                <text class="picker_text">{{isChildren_items[isChildren_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">评估定级情况:</text></view>
+          <view class="td_right" >
+             <picker bindchange="input_value" range="{{level_items}}" data-id="level_index">
+              <view class="picker">
+                <text class="picker_text">{{level_items[level_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:24%"><text space="ensp">总藏量： </text></view>
+          <view class="td_right" style="width:76%">
+            <input type="number" placeholder="请输入总藏量" bindinput="input_value" data-id="CollectionSum" value="{{CollectionSum}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">图书总藏量： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入图书总藏量" bindinput="input_value" data-id="BookSum" value="{{BookSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">古籍总藏量： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入古籍总藏量" bindinput="input_value" data-id="AncientSum" value="{{AncientSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">报刊总数： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入报刊总数" bindinput="input_value" data-id="PressSum" value="{{PressSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:41%"><text space="ensp">视听文献总藏量： </text></view>
+          <view class="td_right" style="width:59%">
+            <input type="text" placeholder="请输入视听文献总藏量" bindinput="input_value" data-id="AVSum" value="{{AVSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:41%"><text space="ensp">缩微制品总藏量： </text></view>
+          <view class="td_right" style="width:59%">
+            <input type="text" placeholder="请输入缩微制品总藏量" bindinput="input_value" data-id="MicroSum" value="{{MicroSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">其他藏品总量： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="text" placeholder="请输入缩微制品总藏量" bindinput="input_value" data-id="OtherSum" value="{{OtherSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:50%"><text space="ensp">总藏量中开架书刊量： </text></view>
+          <view class="td_right" style="width:50%">
+            <input type="text" placeholder="请输入缩微制品总藏量" bindinput="input_value" data-id="OpenSum" value="{{OpenSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">总藏量中少儿文献： </text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入缩微制品总藏量" bindinput="input_value" data-id="ChilderSum" value="{{ChilderSum}}" />
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">电子图书： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入缩微制品总藏量" bindinput="input_value" data-id="EbookSum" value="{{EbookSum}}" />
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:41%"><text space="ensp">书架单层总长度： </text></view>
+          <view class="td_right" style="width:59%">
+            <input type="digit" placeholder="请输入书架单层总长度" bindinput="input_value" data-id="TotalLength" value="{{TotalLength}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view">
+          <view class="td_left" style="width:41%"><text space="ensp">有效注册用户数： </text></view>
+          <view class="td_right" style="width:59%">
+            <input type="number" placeholder="请输入有效注册用户数" bindinput="input_value" data-id="TRegSum" value="{{TRegSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:37%"><text space="ensp">注册用户总数： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入注册用户总数" bindinput="input_value" data-id="RegSum" value="{{RegSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">计算机台数： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入计算机台数" bindinput="input_value" data-id="ComputerSum" value="{{ComputerSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:37%"><text space="ensp">阅览室坐席数： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入阅览室坐席数" bindinput="input_value" data-id="SeatsSum" value="{{SeatsSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:46%"><text space="ensp">志愿者服务队伍数： </text></view>
+          <view class="td_right" style="width:54%">
+            <input type="number" placeholder="请输入志愿者服务队伍数" bindinput="input_value" data-id="TeamsSum" value="{{TeamsSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:46%"><text space="ensp">志愿者服务队人数： </text></view>
+          <view class="td_right" style="width:54%">
+            <input type="number" placeholder="请输入志愿者服务队人数" bindinput="input_value" data-id="PeopleSum" value="{{PeopleSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:37%"><text space="ensp">流动图书车数： </text></view>
+          <view class="td_right"style="width:63%">
+            <input type="number" placeholder="请输入流动图书车数" bindinput="input_value" data-id="CarSum" value="{{CarSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">分馆数量： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入分馆数量" bindinput="input_value" data-id="BranchSum" value="{{BranchSum}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">免费WIFI:</text></view>
+          <view class="td_right" >
+             <picker bindchange="input_value" range="{{isFreeWifi_items}}" data-id="isFreeWifi_index">
+              <view class="picker">
+                <text class="picker_text">{{isFreeWifi_items[isFreeWifi_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">无障碍设施:</text></view>
+          <view class="td_right" >
+             <picker bindchange="input_value" range="{{isNObstacle_items}}" data-id="isNObstacle_index">
+              <view class="picker">
+                <text class="picker_text">{{isNObstacle_items[isNObstacle_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view">
+          <view class="td_left" style="width:37%"><text space="ensp">安全检查设备： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入安全检查设备" bindinput="input_value" data-id="safe" value="{{safe}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:37%"><text space="ensp">每周开放天数： </text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入每周开放天数" bindinput="input_value" data-id="OpenDay" value="{{OpenDay}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:59%"><text space="ensp">数字资源总量（存储量）： </text></view>
+          <view class="td_right" style="width:41%">
+            <input type="number" placeholder="请输入数字资源" bindinput="input_value" data-id="DigitalRes" value="{{DigitalRes}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:50%"><text space="ensp">数字资源元数据总量： </text></view>
+          <view class="td_right" style="width:50%">
+            <input type="number" placeholder="请输入数字资源元数据" bindinput="input_value" data-id="YDigitalRes" value="{{YDigitalRes}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:41%"><text space="ensp">数字资源库数量： </text></view>
+          <view class="td_right" style="width:59%">
+            <input type="number" placeholder="请输入数字资源库数量" bindinput="input_value" data-id="KDigitalRes" value="{{KDigitalRes}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">自建特色数字资源总量（存储量）： </text>
+            <textarea  placeholder="请输入自建特色数字资源总量（存储量）" bindinput="input_value" data-id="TeDigitalRes" value="{{TeDigitalRes}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">自建特色数字资源元数据总量： </text>
+            <textarea  placeholder="请输入自建特色数字资源元数据总量" bindinput="input_value" data-id="TeYDigitalRes" value="{{TeYDigitalRes}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx" >
+          <view class="td_left" style="width:100%">
+            <text space="ensp">自建特色数字资源库数量： </text>
+            <textarea  placeholder="请输入自建特色数字资源库数量" bindinput="input_value" data-id="TeKDigitalRes" value="{{TeKDigitalRes}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+

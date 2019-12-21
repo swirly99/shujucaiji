@@ -1,21 +1,99 @@
-// pages/addOrUpdate/jingqu.js
+// pages/addOrUpdate/cesuo.js
+import { GetData } from "../../utils/GetData.js"
+import { SaveOrUpdate } from "../../utils/SaveOrUpdate.js"
+import { PositionStr } from "../../utils/PositionStr.js"
+
+const getData = new GetData()
+const saveOrUpdate = new SaveOrUpdate()
+const positionStr = new PositionStr()
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    ToiletClass:'',//厕所级别
+    ToiletClass_items: ['AAA','AA','A','未定义级别'],
+    ToiletClass_iindex: 0,
+    scenic:'',//所属风景名称
+    facilities:'',//特色设施
+    facilities_items: [
+      {name:'母婴室', checked:false},
+      {name:'第三卫生间', checked:false},
+      {name:'星级厕所', checked:false},
+      {name:'其他', checked:false}
+    ],//特色设施列表
+    OwnerUnit:'',//业主单位
+    // b_width: 340,
+    view_index: 0
   },
+  jc:null,
+  //(普通文本框 || 普通下拉框 || 时间下拉框 || 普通复选框)赋值
+  input_value: function (e) {
+    this.setData({
+      [e.currentTarget.dataset.id]: e.detail.value,
+    })
+  },
+  //滑动swiper，控制swiper页码
+  change_swiper: function (e) {
+    this.setData({
+      view_index: e.detail.current
+    })
+  },
+  //下一页
+  // bottom_view: function () {
+  //   this.setData({
+  //     view_index: this.data.view_index + 1
+  //   })
+  // },
+  //上一页
+  // up_view: function () {
+  //   this.setData({
+  //     view_index: this.data.view_index - 1
+  //   })
+  // },
+  submit:function(){
+    //下拉框数据处理
+    var facilities1="";
+    if (this.data.facilities.length>0){
+      this.data.facilities.forEach(v=>{
+        facilities1 += (v + ",")
+      })
+      facilities1=facilities1.substr(0,facilities1.length-1)
+    }
+    //数据存放到jc
+    var qt=new Object();
+    qt.facilities = facilities1
+    qt.scenic=this.data.scenic
+    qt.OwnerUnit=this.data.OwnerUnit
+    qt.ToiletClass = this.data.ToiletClass_items[this.data.ToiletClass_index]
 
+    var para = this.jc
+    para.attr=qt
+
+    saveOrUpdate.post_data(para)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData(JSON.parse(decodeURIComponent(options.data)))
+    this.jc = JSON.parse(decodeURIComponent(options.data))
     wx.setNavigationBarTitle({
-      title: "添加（" + this.data.entity.name + "_其他)"
+      title: "添加（" + this.jc.entity.name + "_其他)"
     })
+    if (this.jc.id != null) {
+      getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
+        if (res.data.status == 200) {
+          this.setData(res.data.data)
+          this.setData({
+            facilities_items: positionStr.check_position(this.data.facilities_items, this.data.facilities),
+            facilities:this.data.facilities==''?'':this.data.facilities.split(","),
+            ToiletClass_index: positionStr.radio_position(this.data.ToiletClass_items, this.data.ToiletClass)
+          })
+        }
+      })
+    }
   },
 
   /**

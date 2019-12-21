@@ -1,2 +1,155 @@
 <!--pages/addOrUpdate/whbmjyjg.wxml-->
-<text>pages/addOrUpdate/whbmjyjg.wxml</text>
+<!-- <text>pages/addOrUpdate/whbmjyjg.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:530rpx">
+          <view class="td_left" style="width:37%"><text space="ensp">登记注册类型： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:63%">
+            <checkbox-group bindchange="input_value" data-id="RegType">
+              <view wx:for="{{RegType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" style="height:230rpx">
+          <view class="td_left" style="width:28%"><text space="ensp">机构类型： </text></view>
+          <view class="td_right" style="overflow-y: auto;width:72%">
+            <checkbox-group bindchange="input_value" data-id="OrgType">
+              <view wx:for="{{OrgType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">从业人员： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入从业人员" bindinput="input_value" data-id="Practitioners" value="{{Practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">专业技术人才：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入专业技术人才" bindinput="input_value" data-id="technical" value="{{technical}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">正高级职称：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入正高级职称" bindinput="input_value" data-id="SeniorTitle" value="{{SeniorTitle}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">副高级职称：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入副高级职称" bindinput="input_value" data-id="DepSeniorTitle" value="{{DepSeniorTitle}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">中级职称： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入中级职称" bindinput="input_value" data-id="IntTitle" value="{{IntTitle}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:24%"><text space="ensp">招生数： </text></view>
+          <view class="td_right" style="width:76%">
+            <input type="number" placeholder="请输入招生数" bindinput="input_value" data-id="Recruit" value="{{Recruit}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">招生数-中职生：</text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入中职生招生数" bindinput="input_value" data-id="RecSecondary" value="{{RecSecondary}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:37%"><text space="ensp">招生数-高职生：</text></view>
+          <view class="td_right" style="width:63%">
+            <input type="number" placeholder="请输入高职生招生数" bindinput="input_value" data-id="RecCollege" value="{{RecCollege}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">在校生数： </text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入在校生数" bindinput="input_value" data-id="students" value="{{students}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:43%"><text space="ensp">在校生数-影视类： </text></view>
+          <view class="td_right" style="width:57%">
+            <input type="number" placeholder="请输入影视类在校生数" bindinput="input_value" data-id="StuFilmLions" value="{{StuFilmLions}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:50%"><text space="ensp">在校生数-戏剧戏曲类：</text></view>
+          <view class="td_right" style="width:50%">
+            <input type="number" placeholder="输入戏剧戏曲类在校生数" bindinput="input_value" data-id="StuDrama" value="{{StuDrama}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:43%"><text space="ensp">在校生数-音乐类： </text></view>
+          <view class="td_right" style="width:57%">
+            <input type="number" placeholder="请输入音乐类在校生数" bindinput="input_value" data-id="StuMusic" value="{{StuMusic}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="float:right;width:{{b_width}}rpx;font-size:36rpx" class="right_button">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left" style="width:43%"><text space="ensp">在校生数-舞蹈类： </text></view>
+          <view class="td_right" style="width:57%">
+            <input type="number" placeholder="请输入在舞蹈类校生数" bindinput="input_value" data-id="StuDance" value="{{StuDance}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:50%"><text space="ensp">在校生数-美术设计类：</text></view>
+          <view class="td_right" style="width:50%">
+            <input type="number" placeholder="输入美术设计类在校生数" bindinput="input_value" data-id="StuArt" value="{{StuArt}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:41%"><text space="ensp">在校生数-杂技曲：</text></view>
+          <view class="td_right" style="width:59%">
+            <input type="number" placeholder="请输入在杂技曲校生数" bindinput="input_value" data-id="StuAcrobatics" value="{{StuAcrobatics}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:39%"><text space="ensp">在校生数-其他：</text></view>
+          <view class="td_right" style="width:61%">
+            <input type="number" placeholder="请输入其他在校生数" bindinput="input_value" data-id="StuOther" value="{{StuOther}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:41%"><text space="ensp">在校生数-高职生：</text></view>
+          <view class="td_right" style="width:59%">
+            <input type="number" placeholder="请输入高职生在校生数" bindinput="input_value" data-id="StuCollege" value="{{StuCollege}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:52%"><text space="ensp">实际使用房屋建筑面积：</text></view>
+          <view class="td_right" style="width:48%">
+            <input type="text" placeholder="请输入实际房屋建筑面积" bindinput="input_value" data-id="area" value="{{area}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="float:right;background:#F7B267;width:{{b_width}}rpx;font-size:36rpx" class="right_button">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
