@@ -27,17 +27,9 @@ Page({
       { name: '港澳台商投资企业', checked: false },
       { name: '外商投资企业', checked: false }
     ],
-    Institutional: '',//机构分组 
-    Institutional_items: [//机构分组 列表
-      { name: '综合性', checked: false },
-      { name: '历史类', checked: false },
-      { name: '艺术类', checked: false },
-      { name: '自然科技类', checked: false },
-      { name: '其他', checked: false }
-    ],
-    feel: '',//免费开放
-    feel_items: ['是', '否'],
-    feel_index: 0,
+    Institutional: '',//机构分组
+    Institutional_items: ['区域性的文物保护管理机构', '专门为一处或几处保护单位设立的保护管理机构'],
+    Institutional_index: 0,
     InsState: '',// 机构情况 字符型
     practitioners: '',// 从业人员数
     technical: '',// 专业技术人才
