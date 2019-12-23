@@ -27,7 +27,6 @@
           </view>
         </view>
       </view>
-      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
       <button bindtap="submit" style="background:#F7B267;font-size:36rpx">提交</button>
     </view>
   </swiper-item>
