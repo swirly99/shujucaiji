@@ -7,11 +7,18 @@
 <view class="jg"></view>
 
 <view class="container">
-  <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{list}}" wx:for-item="item" wx:for-index="index" data-index="{{index}}" wx:if="{{tools.indexOf(item.name,sousuo_data)}}">
-    <view class="content">{{item.name}}</view>
-    <view class="del" data-index="{{index}}">
-      <view class="caozuo" data-index="{{index}}" style="background:#6F79FF" bindtap="update">编辑</view>
-      <view class="caozuo" data-index="{{index}}" style="background-color: #FF2E2E" bindtap="del">删除</view>
+  <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index">
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove"  data-index="{{index}}" wx:if="{{tools.indexOf(item.name,sousuo_data)}}">
+      <view class="content" bindtap="show_sub_menu" data-index="{{index}}">
+        <image src="../img/{{item.show?'right':'bottom'}}_arrow.png" wx:if="{{item.show!=null}}" mode="widthFix"/>
+        {{item.name}}
+      </view>
+      <view class="del" data-index="{{index}}">
+        <view class="caozuo" data-index="{{index}}" style="background:#6F79FF" bindtap="update">编辑</view>
+        <view class="caozuo" data-index="{{index}}" style="background-color: #FF2E2E" bindtap="del">删除</view>
+      </view>
     </view>
-  </view>
+
+    <view wx:if="{{!item.show}}" class="sub_menu_button"><span>添加子菜单栏</span></view>
+  </block>
 </view>

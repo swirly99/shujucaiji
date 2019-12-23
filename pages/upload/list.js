@@ -64,8 +64,15 @@ Page({
         }
       }
     })
-    
   },
+
+  show_sub_menu:function(e){
+    this.data.list[e.currentTarget.dataset.index].show = !this.data.list[e.currentTarget.dataset.index].show
+    this.setData({
+      list: this.data.list
+    })
+  },
+
 
 
   /* 滑动出现编辑，删除start */
@@ -127,7 +134,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(9999)
     this.setData({
       entity: JSON.parse(options.data)
     })
@@ -152,6 +158,11 @@ Page({
         list: []
     })
     getData.req("collection/ware_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId }, res => {
+      if (res.data.data[0].mapList.length>0){
+        res.data.data.forEach(v=>{
+          v.show=false
+        })
+      }
       this.setData({
         list: res.data.data
       })
