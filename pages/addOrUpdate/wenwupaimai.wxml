@@ -1,2 +1,41 @@
 <!--pages/addOrUpdate/wenwupaimai.wxml-->
-<text>pages/addOrUpdate/wenwupaimai.wxml</text>
+<!-- <text>pages/addOrUpdate/wenwupaimai.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:150rpx">
+          <view class="td_left"><text space="ensp">登记注册类型： </text></view>
+          <view class="td_right" style="overflow-y: auto">
+            <checkbox-group bindchange="input_value" data-id="RegType">
+              <view wx:for="{{RegType_items}}" class="box">
+               <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:55%"><text space="ensp">文物拍卖经营资质类型： </text></view>
+          <view class="td_right"style="width:45%">
+            <input type="text" placeholder="请输入从业人员数" bindinput="input_value" data-id="qualification" value="{{qualification}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">从业人员数： </text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入从业人员数" bindinput="input_value" data-id="practitioners" value="{{practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">经营面积： </text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入经营面积" bindinput="input_value" data-id="area" value="{{area}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="background:#F7B267;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+

@@ -1,1 +1,70 @@
 /* pages/addOrUpdate/feiwuzhiwenhua.wxss */
+page{
+  width:100%;
+  height:100%;
+  background:#F5F5F5;
+  font-size:34rpx;
+}
+swiper,swiper-item{
+  width:100%;
+  height:100%;
+}
+.bg_view{
+  width:100%;
+  height:100%;
+}
+.tr_view{
+  width:100%;
+  height:100rpx;
+  border-bottom:#cccccc solid 2rpx
+}
+.td_left{
+  float:left;
+  width:36%;
+  line-height:100rpx;
+  height:100%;
+  text-align:left;
+  padding-left: 30rpx;
+  color:#808080;
+  box-sizing: border-box;
+}
+.td_right{
+  float:left;
+  height:100%;
+  width:64%;
+}
+.td_right input{
+  width:100%;
+  height:100%;
+  line-height:100rpx;
+}
+.td_left textarea{
+  width:100%;
+  height:37%;
+  line-height:50rpx;
+}
+.radio-group radio:nth-child(3){margin-right: 7px;}
+button{
+  margin-top:20rpx;
+  font-weight: 600;
+  background:#83B4FF;
+  color:#fff;
+  
+}
+.left_button{position: relative;left:10px}
+.right_button{position: relative;right:10px}
+.picker{
+  width:100%;
+  height:100%;
+  line-height:100rpx
+}
+.xl{
+  width: 13px;
+  height: 7px;
+  float: right;
+  position:relative;
+  margin-top: 44rpx;
+  right:20rpx
+}
+
+.box{width:50%;float:left;padding:0.2rem 0rem 0.2rem 0rem}

@@ -1,2 +1,206 @@
 <!--pages/addOrUpdate/wenwubaohuguanli.wxml-->
-<text>pages/addOrUpdate/wenwubaohuguanli.wxml</text>
+<!-- <text>pages/addOrUpdate/wenwubaohuguanli.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:500rpx">
+          <view class="td_left" style="width:27%"><text space="ensp">登记注册类型：</text></view>
+          <view class="td_right" style="overflow-y: auto;width:73%">
+            <checkbox-group bindchange="input_value" data-id="RegType">
+              <view wx:for="{{RegType_items}}" class="box">
+                <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+              </view>
+            </checkbox-group>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:28%"><text space="ensp">机构分组:</text></view>
+          <view class="td_right" style="width:72%">
+             <picker bindchange="input_value" range="{{Institutional_items}}" data-id="Institutional_index">
+              <view class="picker">
+                <text class="picker_text">{{Institutional_items[Institutional_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">机构情况：</text></view>
+          <view class="td_right" style="width:72%">
+            <input type="text" placeholder="请输入机构情况" bindinput="input_value" data-id="InsState" value="{{InsState}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">从业人员数：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入从业人员数" bindinput="input_value" data-id="practitioners" value="{{practitioners}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">专业技术人才：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入专业技术人才数" bindinput="input_value" data-id="technical" value="{{technical}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">安全保卫人员：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入安全保卫人员数" bindinput="input_value" data-id="security" value="{{security}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left" style="width:51%"><text space="ensp">登记注册志愿者人数：</text></view>
+          <view class="td_right" style="width:49%">
+            <input type="number" placeholder="请输入注册志愿者人数" bindinput="input_value" data-id="RegVolunteer" value="{{RegVolunteer}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:22%"><text space="ensp">藏品数：</text></view>
+          <view class="td_right" style="width:78%">
+            <input type="number" placeholder="请输入藏品数" bindinput="input_value" data-id="collection" value="{{collection}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">文物藏品：</text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入文物藏品数" bindinput="input_value" data-id="CulturalRelic" value="{{CulturalRelic}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">一级文物：</text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入一级文物数" bindinput="input_value" data-id="FirstRelic" value="{{FirstRelic}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">二级文物：</text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入二级文物数" bindinput="input_value" data-id="SecondRelic" value="{{SecondRelic}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:28%"><text space="ensp">三级文物：</text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入三级文物数" bindinput="input_value" data-id="ThirdRelic" value="{{ThirdRelic}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:57%"><text space="ensp">文物保护规划和方案设计：</text></view>
+          <view class="td_right" style="width:43%">
+            <input type="number" placeholder="请输入数量" bindinput="input_value" data-id="plan" value="{{plan}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文物保护单位保护维修情况——\n国保单位保护维修项目数：</text></view>
+          <view style="width:100%;padding-left: 30rpx;">
+            <input type="number" placeholder="请输入维修项目数" bindinput="input_value" data-id="country" value="{{country}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文物保护单位保护维修情况——\n省保单位保护维修项目数：</text></view>
+          <view style="width:100%;padding-left: 30rpx;">
+            <input type="number" placeholder="请输入维修项目数" bindinput="input_value" data-id="province" value="{{province}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:150rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文物保护单位保护维修情况——\n市、县保单位保护维修项目数：</text></view>
+          <view style="width:100%;padding-left: 30rpx;">
+            <input type="number" placeholder="请输入维修项目数" bindinput="input_value" data-id="city" value="{{city}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">进行考古发掘情况-考古发掘面积：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入考古发掘面积" bindinput="input_value" data-id="AEarea" value="{{AEarea}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">进行考古发掘情况-出土器物：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入出土器物" bindinput="input_value" data-id="unearthed" value="{{unearthed}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">进行考古发掘情况-原址保护展示面积：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入原址保护展示面积" bindinput="input_value" data-id="original" value="{{original}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">进行考古发掘情况-异地保护展示面积：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入异地保护展示面积" bindinput="input_value" data-id="different" value="{{different}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:28%"><text space="ensp">主办刊物：</text></view>
+          <view class="td_right" style="width:72%">
+            <input type="number" placeholder="请输入主办刊物" bindinput="input_value" data-id="publication" value="{{publication}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:39%"><text space="ensp">国际合作项目数：</text></view>
+          <view class="td_right" style="width:61%">
+            <input type="number" placeholder="请输入国际合作项目数" bindinput="input_value" data-id="international" value="{{international}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:44%"><text space="ensp">文化创意产品种类：</text></view>
+          <view class="td_right" style="width:56%">
+            <input type="number" placeholder="请输入文化创意产品种类" bindinput="input_value" data-id="create" value="{{create}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文博单位举办新媒体情况-举办网站：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入举办网站" bindinput="input_value" data-id="website" value="{{website}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文博单位举办新媒体情况-网站年访问量：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入网站年访问量" bindinput="input_value" data-id="visits" value="{{visits}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:115rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文博单位举办新媒体情况-举办微信公众号、微博：</text></view>
+          <view style="width:100%;padding: 15rpx 0 0 30rpx;">
+            <input type="number" placeholder="请输入举办微信公众号、微博数量" bindinput="input_value" data-id="MicroBlog" value="{{MicroBlog}}"/>
+          </view>
+        </view>
+        <view class="tr_view" style="height:150rpx">
+          <view style="width:100%;padding-left: 30rpx;color:#808080;"><text space="ensp">文博单位举办新媒体情况——\n举办微信公众号、微博关注人数：</text></view>
+          <view style="width:100%;padding-left: 30rpx;">
+            <input type="number" placeholder="请输入举办微信公众号、微博关注人数" bindinput="input_value" data-id="follow" value="{{follow}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>

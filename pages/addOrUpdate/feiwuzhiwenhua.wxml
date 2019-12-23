@@ -1,2 +1,127 @@
 <!--pages/addOrUpdate/feiwuzhiwenhua.wxml-->
-<text>pages/addOrUpdate/feiwuzhiwenhua.wxml</text>
+<!-- <text>pages/addOrUpdate/feiwuzhiwenhua.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view">
+          <view class="td_left" style="width:70%"><text space="ensp">是否非物质文化遗产保护中心:</text></view>
+          <view class="td_right" style="width:30%">
+             <picker bindchange="input_value" range="{{ProCenter_items}}" data-id="ProCenter_index">
+              <view class="picker">
+                <text class="picker_text">{{ProCenter_items[ProCenter_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left" style="width:40%"><text space="ensp">是否独立核算:</text></view>
+          <view class="td_right" style="width:60%">
+             <picker bindchange="input_value" range="{{independent_items}}" data-id="independent_index">
+              <view class="picker">
+                <text class="picker_text">{{independent_items[independent_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">工作人员：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入工作人员数" bindinput="input_value" data-id="personnel" value="{{personnel}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">专职人员：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入专职人员数" bindinput="input_value" data-id="professional" value="{{professional}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">专业技术人才：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入专业技术人才数" bindinput="input_value" data-id="technical" value="{{technical}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">正高级职称：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入正高级职称数" bindinput="input_value" data-id="seniorTitle" value="{{seniorTitle}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">副高级职称：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入副高级职称数" bindinput="input_value" data-id="depSeniorTitle" value="{{depSeniorTitle}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">中级职称：</text></view>
+          <view class="td_right">
+            <input type="number" placeholder="请输入中级职称数" bindinput="input_value" data-id="ontTitle" value="{{ontTitle}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:54%"><text space="ensp">调查成果-项目资源总量：</text></view>
+          <view class="td_right" style="width:46%">
+            <input type="text" placeholder="请输入项目资源总量" bindinput="input_value" data-id="resources" value="{{resources}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">调查成果-征集实物：</text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入征集实物" bindinput="input_value" data-id="entity" value="{{entity}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left" style="width:54%"><text space="ensp">调查成果-征集文本资料：</text></view>
+          <view class="td_right" style="width:46%">
+            <input type="text" placeholder="请输入征集文本资料" bindinput="input_value" data-id="written" value="{{written}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">调查成果-录音资料：</text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入录音资料" bindinput="input_value" data-id="sound" value="{{sound}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">调查成果-录像资料：</text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入录像资料" bindinput="input_value" data-id="videotape" value="{{videotape}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">调查成果-调查报告：</text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入调查报告" bindinput="input_value" data-id="presentation" value="{{presentation}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">调查成果-出版成果：</text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入出版成果" bindinput="input_value" data-id="achievements" value="{{achievements}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left" style="width:46%"><text space="ensp">调查成果-资源清单：</text></view>
+          <view class="td_right" style="width:54%">
+            <input type="text" placeholder="请输入资源清单" bindinput="input_value" data-id="Detailedlist" value="{{Detailedlist}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+
+

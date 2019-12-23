@@ -15,7 +15,7 @@ Page({
   data: {
     ToiletClass:'',//厕所级别
     ToiletClass_items: ['AAA','AA','A','未定义级别'],
-    ToiletClass_iindex: 0,
+    ToiletClass_index: 0,
     scenic:'',//所属风景名称
     facilities:'',//特色设施
     facilities_items: [
