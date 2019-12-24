@@ -1,7 +1,7 @@
+// pages/addOrUpdate/tesecanyin_tesecai.js
 import { GetData } from "../../utils/GetData.js"
 const getData = new GetData()
 const app = getApp()
-
 Page({
 
   /**
@@ -11,12 +11,11 @@ Page({
     sousuo_data: '',
     startX: 0, //开始坐标
     startY: 0,
-    list:[],
-    SubList:[],
-    imgShow:false,
-    entity:null
+    list: [],
+    SubList: [],
+    imgShow: false,
+    entity: {}
   },
-
   //搜索
   input_sousuo: function (e) {
     this.setData({
@@ -24,23 +23,23 @@ Page({
     })
   },
 
-  update:function(e){
+  update: function (e) {
     this.data.entity.wid = this.data.list[e.currentTarget.dataset.index].waresId
     wx.navigateTo({
-      url: "basics?data=" + JSON.stringify(this.data.entity)
+      url: "/pages/addOrUpdate/tesecaiadd?data=" + JSON.stringify(this.data.entity)
     })
   },
 
   del: function (e) {
-    getData.req("collection/ware_delete.jspx", "POST", { key: app.globalData.key, id: this.data.list[e.currentTarget.dataset.index].waresId }, res => {
-      if (res.data.status == 200){
+    getData.req("collection/extension_delete.jspx", "POST", { key: app.globalData.key, id: this.data.list[e.currentTarget.dataset.index].waresId }, res => {
+      if (res.data.status == 200) {
         this.onShow();
       }
     })
   },
 
-  add:function(e){
-    delete this.data.entity.wid
+  add: function (e) {
+    // delete this.data.entity.wid
     wx.getSetting({
       success: res => {
         if (!res.authSetting["scope.userLocation"]) {
@@ -54,29 +53,20 @@ Page({
                 })
               } else {
                 wx.navigateTo({
-                  url: "basics?data=" + JSON.stringify(this.data.entity)
+                  url: "/pages/addOrUpdate/tesecaiadd?data=" + JSON.stringify(this.data.entity)
+                  // url: "/pages/addOrUpdate/tesecaiadd"
                 })
               }
             }
           })
-        }else{
+        } else {
           wx.navigateTo({
-            url: "basics?data=" + JSON.stringify(this.data.entity)
+            url: "/pages/addOrUpdate/tesecaiadd"
           })
         }
       }
     })
   },
-
-  show_sub_menu:function(e){
-    this.data.list[e.currentTarget.dataset.index].show = !this.data.list[e.currentTarget.dataset.index].show
-    this.setData({
-      list: this.data.list
-    })
-  },
-
-
-
   /* 滑动出现编辑，删除start */
   touchstart: function (e) {
     //开始触摸时 重置所有删除
@@ -93,12 +83,12 @@ Page({
   touchmove: function (e) {
     var index = e.currentTarget.dataset.index,//当前索引
 
-    startX = this.data.startX,//开始X坐标
-    startY = this.data.startY,//开始Y坐标
-    touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
-    touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
-    //获取滑动角度
-    angle = this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
+      startX = this.data.startX,//开始X坐标
+      startY = this.data.startY,//开始Y坐标
+      touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
+      touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
+      //获取滑动角度
+      angle = this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
 
     this.data.list.forEach(function (v, i) {
       v.isTouchMove = false
@@ -129,37 +119,18 @@ Page({
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
   /* 滑动出现编辑，删除end */
-  /* 单击子菜单跳转至相应页面*/
-  gotolist: function (event) {
-    var id = event.target.dataset.id;
-    var name=event.target.dataset.name
-    console.log(id);
-    var url = "/pages/addOrUpdate/tesecanyin_" + id + "?name=" + name
-    wx.navigateTo({
-      url: url,
-    })
-  },
-  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.entity)
+    console.log(options.name)
     this.setData({
-      entity: JSON.parse(options.data),
+      entity: options.name,
     })
     wx.setNavigationBarTitle({
-      title: this.data.entity.name
+      title: this.data.entity
     })
-    if (this.data.entity.name == '特色餐饮') {
-      this.setData({
-        SubList: [
-          { name: '特色菜', id: 'tesecai' },
-          { name: '餐厅团购',id:'tuangou'}
-        ],
-        imgShow:true
-      })
-    }
+    
   },
 
   /**
@@ -174,14 +145,9 @@ Page({
    */
   onShow: function () {
     this.setData({
-        list: []
+      list: []
     })
-    getData.req("collection/ware_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId }, res => {
-      if (res.data.data[0].mapList.length>0){
-        res.data.data.forEach(v=>{
-          v.show=false
-        })
-      }
+    getData.req("/collection/extension_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId || ''}, res => {
       this.setData({
         list: res.data.data
       })

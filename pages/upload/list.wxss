@@ -33,22 +33,6 @@ input{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .touch-item {
   font-size: 14px;
   display: flex;
@@ -86,6 +70,11 @@ input{
 .sub_menu_button span{
   padding:10rpx 20rpx 10rpx 20rpx;
   border:red solid 1rpx
+}
+.subList{
+  padding:20rpx 0rpx 12rpx 80rpx;
+  border-bottom:1px solid #ccc;
+  text-align: left;
 }
 .del {
   width: 180px;

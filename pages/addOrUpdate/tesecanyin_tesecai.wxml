@@ -1,3 +1,5 @@
+<!--pages/addOrUpdate/tesecanyin_tesecai.wxml-->
+<!-- <text>pages/addOrUpdate/tesecanyin_tesecai.wxml</text> -->
 <wxs src="../wxs/indexOf.wxs" module="tools" />
 <view class="sousuo" style="">
   <input type="text" placeholder="输入文字模糊筛选" bindinput="input_sousuo" style="border-right:#C4C4C4 solid 2rpx;width:70%"/>
@@ -10,7 +12,6 @@
   <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index">
     <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove"  data-index="{{index}}" wx:if="{{tools.indexOf(item.name,sousuo_data)}}">
       <view class="content" bindtap="show_sub_menu" data-index="{{index}}">
-        <image src="../img/{{item.show?'bottom':'right'}}_arrow.png" wx:if="{{imgShow}}" mode="widthFix"/>
         {{item.name}}
       </view>
       <view class="del" data-index="{{index}}">
@@ -18,11 +19,6 @@
         <view class="caozuo" data-index="{{index}}" style="background-color: #FF2E2E" bindtap="del">删除</view>
       </view>
     </view>
-
-    <view wx:if="{{item.show}}">
-       <view wx:for="{{SubList}}" wx:key="i" class="subList">
-         <view bindtap="gotolist" data-id="{{item.id}}" data-name="{{item.name}}">{{index+1}}、{{item.name}}</view>
-       </view>
-    </view>
   </block>
 </view>
+
