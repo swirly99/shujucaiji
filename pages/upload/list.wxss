@@ -68,6 +68,25 @@ input{
   transform: translateX(180px);
   margin-left: -180px
 }
+.content image{
+  width:20rpx;
+}
+.sub_menu{
+  width:700rpx;
+  padding:10rpx 0rpx 10rpx 50rpx;
+  background:#ccc;
+  border-bottom: #fff solid 1rpx;
+}
+.sub_menu_button{
+  margin-left:100rpx;
+  width:550rpx;
+  text-align:center;
+  padding:20rpx 0rpx 12rpx 0rpx;
+}
+.sub_menu_button span{
+  padding:10rpx 20rpx 10rpx 20rpx;
+  border:red solid 1rpx
+}
 .del {
   width: 180px;
   display: flex; 

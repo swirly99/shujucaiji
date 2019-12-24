@@ -125,7 +125,6 @@ Page({
       getData.req("collection/ctg_wares.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
         if (res.data.status == 200) {
           this.setData(res.data.data)
-          
           this.setData({
             lx_index: positionStr.radio_position(this.data.lx_items,this.data.lx),
             dj_index: positionStr.radio_position(this.data.dj_items, this.data.dj),
