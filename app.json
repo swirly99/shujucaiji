@@ -51,10 +51,9 @@
     "pages/addOrUpdate/dongmanqiye",
     "pages/addOrUpdate/wenhuashifan",
     "pages/addOrUpdate/fyccr",
-    "pages/login/index",
-    "pages/addOrUpdate/tesecanyin_tesecai",
-    "pages/addOrUpdate/tesecanyin_tuangou",
-    "pages/addOrUpdate/tesecaiadd"
+    "pages/secondLevel/list",
+    "pages/secondLevel/tesecai",
+    "pages/login/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

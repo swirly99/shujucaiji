@@ -92,6 +92,19 @@ Page({
     })
   },
 
+  //去子菜单的列表页
+  goToSonList:function(e){
+    var arr_index=e.currentTarget.dataset.index.split(",")
+    //,waresId:商家id，sonObj子菜单obj
+    var para = "waresId=" + this.data.list[arr_index[0]].waresId + "&sonObj=" + JSON.stringify(this.data.list[arr_index[0]].mapList[arr_index[1]])
+    wx.navigateTo({
+      url: "../secondLevel/list?"+para
+    })
+  },
+
+
+
+
 
 
   /* 滑动出现编辑，删除start */
@@ -147,35 +160,6 @@ Page({
   },
   /* 滑动出现编辑，删除end */
 
-
-
-
-  /* 单击子菜单跳转至相应页面*/
-  gotolist: function (event) {
-    var obj = new Object(), arr = event.currentTarget.dataset.index.split(",")
-    obj.ctgId = this.data.entity.ctgId;
-    obj.waresId = this.data.list[arr[0]].waresId
-    var para = "name=" + this.data.SubList[arr[1]].name + "&jc=" + JSON.stringify(obj);
-    wx.navigateTo({
-      url: "../addOrUpdate/tesecanyin_" + this.data.SubList[arr[1]].id + "?" + para,
-    })
-  },
-  
-  /*区分类别，展示不一样 */
-  dis_type:function(){
-    if (this.data.entity.name == '特色餐饮') {
-      this.setData({
-        SubList: [
-          { name: '特色菜', id: 'tesecai' },
-          { name: '餐厅团购', id: 'tuangou' }
-        ],
-        imgShow: true
-      })
-    } else if (this.data.entity.name == '购物场所') {
-      console.log('购物场所',this.data.list)
-    }
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -210,7 +194,6 @@ Page({
           list: res.data.data
         })
       }
-      //this.dis_type();
     })
   },
 

@@ -1,4 +1,4 @@
-// pages/addOrUpdate/tesecanyin_tesecai.js
+// pages/secondLevel/list.js
 import { GetData } from "../../utils/GetData.js"
 const getData = new GetData()
 const app = getApp()
@@ -9,45 +9,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    sousuo_data: '',
-    startX: 0, //开始坐标
-    startY: 0,
-    list: [],
-    entity: {}
-  },
-  jc:'',
-
-  //搜索
-  input_sousuo: function (e) {
-    this.setData({
-      sousuo_data: e.detail.value
-    })
+    waresId:'',
+    sonObj:null,
+    list:null,
+    sousuo_data:'',
   },
 
-  update: function (e) {
-    this.data.entity.wid = this.data.list[e.currentTarget.dataset.index].waresId
+  add:function(e){
     wx.navigateTo({
-      url: "/pages/addOrUpdate/tesecaiadd?data=" + JSON.stringify(this.data.entity)
+      url: this.data.sonObj.code + "?ctgId="+this.data.sonObj.ctgId+"&waresId=" + this.data.waresId
     })
   },
 
-  del: function (e) {
-    getData.req("collection/extension_delete.jspx", "POST", { key: app.globalData.key, id: this.data.list[e.currentTarget.dataset.index].waresId }, res => {
-      if (res.data.status == 200) {
-        this.onShow();
-      }
-    })
-  },
 
-  add: function (e) {
-    wx.navigateTo({
-      url: "/pages/addOrUpdate/tesecaiadd?data=" + JSON.stringify(this.jc)
-    })
-  },
-  show_sub_menu: function (e) {
-    this.data.list[e.currentTarget.dataset.index].show = !this.data.list[e.currentTarget.dataset.index].show
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
     this.setData({
-      list: this.data.list
+      waresId: options.waresId,
+      sonObj: JSON.parse(options.sonObj)
+    })
+    wx.setNavigationBarTitle({
+      title: this.data.sonObj.ctgName+"_列表"
+    })
+    getData.req("collection/extension_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.sonObj.ctgId, waresId: this.data.waresId}, res => {
+      this.setData({
+        list: [{ name: '红烧鲫鱼', id: 0, isTouchMove:false}]
+      })
     })
   },
 
@@ -65,7 +54,7 @@ Page({
     })
   },
   touchmove: function (e) {
-      var index = e.currentTarget.dataset.index,//当前索引
+    var index = e.currentTarget.dataset.index,//当前索引
 
       startX = this.data.startX,//开始X坐标
       startY = this.data.startY,//开始Y坐标
@@ -103,15 +92,8 @@ Page({
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
   /* 滑动出现编辑，删除end */
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    wx.setNavigationBarTitle({
-      title: options.name
-    })
-    this.jc = JSON.parse(options.jc)
-  },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -124,14 +106,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log()
-    getData.req("/collection/extension_lsit.jspx", "POST", { ctgId: this.jc.ctgId, waresId: this.jc.waresId,key:app.globalData.key}, res => {
-      this.setData({
-        list: res.data.data
-      })
-      console.log(res,1)
-    })
-    
+
   },
 
   /**

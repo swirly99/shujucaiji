@@ -1,0 +1,47 @@
+<view class="tr_view">
+  <view class="td_left"><text space="ensp">特色菜名称： </text></view>
+  <view class="td_right">
+    <input type="text" placeholder="请输入特色菜名称..." bindinput="input_value" data-id="tscMc" value="{{tscMc}}"/>
+  </view>
+</view>
+
+<view class="tr_view">
+  <view class="td_left"><text space="ensp">餐馆名称： </text></view>
+  <view class="td_right">
+    <input type="text" placeholder="请输入餐馆名称..." bindinput="input_value" data-id="cgMc" value="{{cgMc}}"/>
+  </view> 
+</view>
+
+<view class="tr_view">
+  <view class="td_left"><text space="ensp">类型： </text></view>
+  <view class="td_right">
+    <input type="text" placeholder="请输入类型..." bindinput="input_value" data-id="xl" value="{{xl}}"/>
+  </view>
+</view>
+
+<view class="tr_view">
+  <view class="td_left"><text space="ensp">辣度指数： </text></view>
+  <view class="td_right">
+    <input type="digit" placeholder="请输入辣度指数..." bindinput="input_value" data-id="ld" value="{{ld}}"/>
+  </view>
+</view>
+
+<view class="tr_view" style="height:200rpx">
+  <view class="td_left"><text space="ensp">简介： </text></view>
+  <view class="td_right">
+    <textarea  placeholder="请输入简介..." bindinput="input_value" data-id="jj" value="{{jj}}" style="height:100%"/>
+  </view>
+</view>
+
+<view class="tr_view" style="height:200rpx">
+  <view class="td_left"><text space="ensp">图片： </text></view>
+  <view class="td_right" wx:if="{{file_url!='' && longImg!=''}}">
+    <image src="{{file_url+longImg}}" data-src="{{file_url+longImg}}" data-src_list="{{[file_url+longImg]}}" class="default_img"  bindtap="show_img"/>
+    <image src="../img/img_colse.png" class="colse" bindtap="delete_img" data-id="longImg"/> 
+  </view>
+  <view class="td_right" wx:if="{{longImg==''}}">
+    <image src="../img/img_add.png" class="default_img" wx:if="{{longImg==''}}" bindtap="upload_img" data-id="longImg" data-count="1"/>
+  </view>
+</view>
+
+<button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>

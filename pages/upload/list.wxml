@@ -20,8 +20,8 @@
     </view>
 
     <view wx:if="{{item.show}}">
-       <view wx:for="{{SubList}}" wx:for-index="index2" class="subList">
-         <view bindtap="gotolist" data-index="{{index}},{{index2}}">{{index+1}}、{{item.name}}</view>
+       <view wx:for="{{item.mapList}}" wx:for-item="sonMenu" wx:for-index="index2" class="subList">
+         <view bindtap="goToSonList" data-index="{{index}},{{index2}}">{{index2+1}}、{{sonMenu.ctgName}}</view>
        </view>
     </view>
   </block>
