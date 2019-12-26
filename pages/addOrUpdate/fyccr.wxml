@@ -1,2 +1,145 @@
 <!--pages/addOrUpdate/fyccr.wxml-->
-<text>pages/addOrUpdate/fyccr.wxml</text>
+<!-- <text>pages/addOrUpdate/fyccr.wxml</text> -->
+<swiper current="{{view_index}}" bindchange="change_swiper">
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">身份证号：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入身份证号" bindinput="input_value" data-id="IDnumber" value="{{IDnumber}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">传承人姓名：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入传承人姓名" bindinput="input_value" data-id="inheritor" value="{{inheritor}}"/>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">所在地： </text></view>
+          <view class="td_right">
+            <picker mode="region" bindchange="select_address" value="{{region}}">
+              <view style="width:100%;height:100rpx;line-height:100rpx">
+                {{region[0]}} - {{region[1]}} - {{region[2]}}
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view">
+          <view class="td_left"><text space="ensp">性 别:</text></view>
+          <view class="td_right">
+             <picker bindchange="input_value" range="{{sex_items}}" data-id="sex_index">
+              <view class="picker">
+                <text class="picker_text">{{sex_items[sex_index]}}</text>
+                <image src="../img/icon_bottom.png" class="xl"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">民 族：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入民族" bindinput="input_value" data-id="nation" value="{{nation}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">出生年月：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入出生年月" bindinput="input_value" data-id="birth" value="{{birth}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">学历：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入学历" bindinput="input_value" data-id="education" value="{{education}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">职业：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入职业" bindinput="input_value" data-id="occupation" value="{{occupation}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">工作单位：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入工作单位" bindinput="input_value" data-id="worlkUnit" value="{{worlkUnit}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">职称职务：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入职称职务" bindinput="input_value" data-id="jobTitle" value="{{jobTitle}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="bottom_view" style="width:{{b_width}}rpx">下一页</button>
+    </view>
+  </swiper-item>
+  <swiper-item>
+    <view class="bg_view">
+      <view style="width:100%;height:1020rpx">
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">项目名称：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入项目名称" bindinput="input_value" data-id="entry" value="{{entry}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">申报单位：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入申报单位" bindinput="input_value" data-id="declaration" value="{{declaration}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">项目类别：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入项目类别" bindinput="input_value" data-id="project" value="{{project}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">联系电话：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入联系电话" bindinput="input_value" data-id="telephone" value="{{telephone}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">通讯地址：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入通讯地址" bindinput="input_value" data-id="address" value="{{address}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">申报时间：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入申报时间" bindinput="input_value" data-id="declare" value="{{declare}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">公布时间：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入公布时间" bindinput="input_value" data-id="publish" value="{{publish}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">个人简历：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入个人简历" bindinput="input_value" data-id="resume" value="{{resume}}"/>
+          </view>
+        </view>
+        <view class="tr_view" >
+          <view class="td_left"><text space="ensp">个人荣誉：</text></view>
+          <view class="td_right">
+            <input type="text" placeholder="请输入个人荣誉" bindinput="input_value" data-id="honor" value="{{honor}}"/>
+          </view>
+        </view>
+      </view>
+      <button bindtap="up_view" style="float:left;width:{{b_width}}rpx" class="left_button">上一页</button>
+      <button bindtap="submit" style="background:#F7B267;width:{{b_width}}rpx;font-size:36rpx">提交</button>
+    </view>
+  </swiper-item>
+</swiper>
+
+
