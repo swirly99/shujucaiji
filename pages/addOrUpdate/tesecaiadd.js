@@ -50,6 +50,7 @@ Page({
     })
   },
   submit: function () {
+    console.log(this.jc.ctgId)
     //数据存放到jc
     var qt = new Object();
     qt.SpecialtyName = this.data.SpecialtyName
@@ -58,11 +59,11 @@ Page({
     qt.SpecialtyInt = this.data.SpecialtyInt
     qt.picture = this.data.picture
     qt.Spicy = this.data.Spicy
-
     var para = this.jc
-    para.attr = qt
-
-    saveOrUpdate.post_data(para)
+    
+    para.attr = qt;
+    console.log(para);
+    saveOrUpdate.post_data(para,"/collection/extension_sava.jspx")
   },
   //图片上传
   upload_img: function (e) {
@@ -150,13 +151,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.jc = JSON.parse(decodeURIComponent(options.data))
-    console.log(options)
+    this.jc = JSON.parse(options.data)
+    this.jc.key=app.globalData.key
+
     if (this.jc.id != null) {
-      getData.req("collection/extension_sava.jspx", "POST", { key: app.globalData.key, id: this.jc.id }, res => {
+      getData.req("collection/extension_sava.jspx", "POST", { ctgId: this.data.entity.ctgId, waresId: his.data.list[e.currentTarget.dataset.index].waresId, "attr": { key: app.globalData.key}}, res => {
         if (res.data.status == 200) {
           this.setData(res.data.data)
         }
+      })
+      wx.setNavigationBarTitle({
+        title: "特色菜_编辑"
+      })
+    }else{
+      wx.setNavigationBarTitle({
+        title: "特色菜_添加"
       })
     }
   },

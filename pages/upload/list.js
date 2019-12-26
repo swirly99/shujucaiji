@@ -129,14 +129,15 @@ Page({
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
   },
   /* 滑动出现编辑，删除end */
+
   /* 单击子菜单跳转至相应页面*/
   gotolist: function (event) {
-    var id = event.target.dataset.id;
-    var name=event.target.dataset.name
-    console.log(id);
-    var url = "/pages/addOrUpdate/tesecanyin_" + id + "?name=" + name
+    var obj = new Object(), arr = event.currentTarget.dataset.index.split(",")
+    obj.ctgId = this.data.entity.ctgId;
+    obj.waresId = this.data.list[arr[0]].waresId
+    var para = "name=" + this.data.SubList[arr[1]].name + "&jc=" + JSON.stringify(obj);
     wx.navigateTo({
-      url: url,
+      url: "../addOrUpdate/tesecanyin_" + this.data.SubList[arr[1]].id + "?" + para,
     })
   },
   
@@ -144,7 +145,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.entity)
     this.setData({
       entity: JSON.parse(options.data),
     })

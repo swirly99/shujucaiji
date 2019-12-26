@@ -2,9 +2,9 @@ import { GetData } from "GetData.js"
 const getData = new GetData()
 
 class SaveOrUpdate{
-  post_data(para){
+  post_data(para,url){
     if(para.id== null) {
-      getData.req("collection/ctg_sava.jspx", "POST", para, res => {
+      getData.req(url == null ? "collection/ctg_sava.jspx" : url, "POST", para, res => {
         if (res.data.status == 200) {
           wx.showToast({
             title: '添加成功',
@@ -23,7 +23,7 @@ class SaveOrUpdate{
         }
       })
     }else {
-      getData.req("collection/ctg_update.jspx", "POST", para, res => {
+      getData.req(url == null ? "collection/ctg_update.jspx" : url, "POST", para, res => {
         if (res.data.status == 200) {
           wx.showToast({
             title: '修改成功',

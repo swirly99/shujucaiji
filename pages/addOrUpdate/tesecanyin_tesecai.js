@@ -2,6 +2,7 @@
 import { GetData } from "../../utils/GetData.js"
 const getData = new GetData()
 const app = getApp()
+
 Page({
 
   /**
@@ -12,10 +13,10 @@ Page({
     startX: 0, //开始坐标
     startY: 0,
     list: [],
-    SubList: [],
-    imgShow: false,
     entity: {}
   },
+  jc:'',
+
   //搜索
   input_sousuo: function (e) {
     this.setData({
@@ -39,34 +40,17 @@ Page({
   },
 
   add: function (e) {
-    // delete this.data.entity.wid
-    wx.getSetting({
-      success: res => {
-        if (!res.authSetting["scope.userLocation"]) {
-          wx.openSetting({
-            success: msg => {
-              if (!msg.authSetting["scope.userLocation"]) {
-                wx.showToast({
-                  title: '请先开启“使用我的地理位置”',
-                  icon: 'none',
-                  duration: 2000
-                })
-              } else {
-                wx.navigateTo({
-                  url: "/pages/addOrUpdate/tesecaiadd?data=" + JSON.stringify(this.data.entity)
-                  // url: "/pages/addOrUpdate/tesecaiadd"
-                })
-              }
-            }
-          })
-        } else {
-          wx.navigateTo({
-            url: "/pages/addOrUpdate/tesecaiadd"
-          })
-        }
-      }
+    wx.navigateTo({
+      url: "/pages/addOrUpdate/tesecaiadd?data=" + JSON.stringify(this.jc)
     })
   },
+  show_sub_menu: function (e) {
+    this.data.list[e.currentTarget.dataset.index].show = !this.data.list[e.currentTarget.dataset.index].show
+    this.setData({
+      list: this.data.list
+    })
+  },
+
   /* 滑动出现编辑，删除start */
   touchstart: function (e) {
     //开始触摸时 重置所有删除
@@ -81,7 +65,7 @@ Page({
     })
   },
   touchmove: function (e) {
-    var index = e.currentTarget.dataset.index,//当前索引
+      var index = e.currentTarget.dataset.index,//当前索引
 
       startX = this.data.startX,//开始X坐标
       startY = this.data.startY,//开始Y坐标
@@ -123,14 +107,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.name)
-    this.setData({
-      entity: options.name,
-    })
     wx.setNavigationBarTitle({
-      title: this.data.entity
+      title: options.name
     })
-    
+    this.jc = JSON.parse(options.jc)
   },
 
   /**
@@ -144,14 +124,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      list: []
-    })
-    getData.req("/collection/extension_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId || ''}, res => {
+    console.log()
+    getData.req("/collection/extension_lsit.jspx", "POST", { ctgId: this.jc.ctgId, waresId: this.jc.waresId,key:app.globalData.key}, res => {
       this.setData({
         list: res.data.data
       })
+      console.log(res,1)
     })
+    
   },
 
   /**
