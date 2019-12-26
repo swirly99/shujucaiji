@@ -12,9 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData(JSON.parse(decodeURIComponent(options.data)))
+    //this.setData(JSON.parse(decodeURIComponent(options.data)))
     wx.setNavigationBarTitle({
-      title: "添加（" + this.data.entity.name + "_其他)"
+      title: "添加（非遗传承人)"
     })
   },
 

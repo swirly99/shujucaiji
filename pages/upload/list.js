@@ -11,7 +11,9 @@ Page({
     sousuo_data: '',
     startX: 0, //开始坐标
     startY: 0,
-    list:[],
+    list:[
+      { name: '测试', id: 1, isTouchMove:false}
+    ],
     SubList:[],
     imgShow:false,
     entity:null
@@ -53,17 +55,32 @@ Page({
                   duration: 2000
                 })
               } else {
-                wx.navigateTo({
-                  url: "basics?data=" + JSON.stringify(this.data.entity)
-                })
+                if (this.data.entity.code == "fyccr") {
+                  wx.navigateTo({
+                    url: "../addOrUpdate/fyccr"
+                  })
+                }else{
+                  wx.navigateTo({
+                    url: "basics?data=" + JSON.stringify(this.data.entity)
+                  })
+                }
               }
             }
           })
         }else{
-          wx.navigateTo({
-            url: "basics?data=" + JSON.stringify(this.data.entity)
-          })
+          if (this.data.entity.code == "fyccr") {
+            wx.navigateTo({
+              url: "../addOrUpdate/fyccr"
+            })
+          } else {
+            wx.navigateTo({
+              url: "basics?data=" + JSON.stringify(this.data.entity)
+            })
+          }
         }
+      },
+      fail:fai=>{
+        console.log(fai)
       }
     })
   },
@@ -130,6 +147,9 @@ Page({
   },
   /* 滑动出现编辑，删除end */
 
+
+
+
   /* 单击子菜单跳转至相应页面*/
   gotolist: function (event) {
     var obj = new Object(), arr = event.currentTarget.dataset.index.split(",")
@@ -141,6 +161,21 @@ Page({
     })
   },
   
+  /*区分类别，展示不一样 */
+  dis_type:function(){
+    if (this.data.entity.name == '特色餐饮') {
+      this.setData({
+        SubList: [
+          { name: '特色菜', id: 'tesecai' },
+          { name: '餐厅团购', id: 'tuangou' }
+        ],
+        imgShow: true
+      })
+    } else if (this.data.entity.name == '购物场所') {
+      console.log('购物场所',this.data.list)
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -151,15 +186,6 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.entity.name
     })
-    if (this.data.entity.name == '特色餐饮') {
-      this.setData({
-        SubList: [
-          { name: '特色菜', id: 'tesecai' },
-          { name: '餐厅团购',id:'tuangou'}
-        ],
-        imgShow:true
-      })
-    }
   },
 
   /**
@@ -173,18 +199,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-        list: []
-    })
     getData.req("collection/ware_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId }, res => {
-      if (res.data.data[0].mapList.length>0){
+      if (res.data.data.length>0 && res.data.data[0].mapList.length>0){
         res.data.data.forEach(v=>{
           v.show=false
         })
       }
-      this.setData({
-        list: res.data.data
-      })
+      if (this.data.entity.code !='fyccr'){
+        this.setData({
+          list: res.data.data
+        })
+      }
+      //this.dis_type();
     })
   },
 

@@ -10,7 +10,7 @@
   <block wx:for="{{list}}" wx:for-item="item" wx:for-index="index">
     <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove"  data-index="{{index}}" wx:if="{{tools.indexOf(item.name,sousuo_data)}}">
       <view class="content" bindtap="show_sub_menu" data-index="{{index}}">
-        <image src="../img/{{item.show?'bottom':'right'}}_arrow.png" wx:if="{{imgShow}}" mode="widthFix"/>
+        <image src="../img/{{item.show?'bottom':'right'}}_arrow.png" wx:if="{{item.mapList!=null && item.mapList.length>0}}" mode="widthFix"/>
         {{item.name}}
       </view>
       <view class="del" data-index="{{index}}">
