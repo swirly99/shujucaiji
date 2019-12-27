@@ -11,12 +11,12 @@ Page({
     sousuo_data: '',
     startX: 0, //开始坐标
     startY: 0,
-    list:[
-      { name: '测试', id: 1, isTouchMove:false}
+    list: [
+      { name: '测试', id: 1, isTouchMove: false }
     ],
-    SubList:[],
-    imgShow:false,
-    entity:null
+    SubList: [],
+    imgShow: false,
+    entity: null
   },
 
   //搜索
@@ -26,8 +26,16 @@ Page({
     })
   },
 
-  update:function(e){
+  update: function (e) {
     this.data.entity.wid = this.data.list[e.currentTarget.dataset.index].waresId
+    if (this.data.entity.code == "fyccr") {
+      // jc.id = this.data.list[e.currentTarget.dataset.index].waresId
+      wx.navigateTo({
+        url: "../addOrUpdate/fyccr?jc=" + JSON.stringify(this.data.entity)
+      // console.log(this.data.list[e.currentTarget.dataset.insdex])
+      })
+      return
+    }
     wx.navigateTo({
       url: "basics?data=" + JSON.stringify(this.data.entity)
     })
@@ -35,13 +43,13 @@ Page({
 
   del: function (e) {
     getData.req("collection/ware_delete.jspx", "POST", { key: app.globalData.key, id: this.data.list[e.currentTarget.dataset.index].waresId }, res => {
-      if (res.data.status == 200){
+      if (res.data.status == 200) {
         this.onShow();
       }
     })
   },
 
-  add:function(e){
+  add: function (e) {
     delete this.data.entity.wid
     wx.getSetting({
       success: res => {
@@ -57,9 +65,9 @@ Page({
               } else {
                 if (this.data.entity.code == "fyccr") {
                   wx.navigateTo({
-                    url: "../addOrUpdate/fyccr"
+                    url: "../addOrUpdate/fyccr?jc=" + JSON.stringify(this.data.entity)
                   })
-                }else{
+                } else {
                   wx.navigateTo({
                     url: "basics?data=" + JSON.stringify(this.data.entity)
                   })
@@ -67,10 +75,10 @@ Page({
               }
             }
           })
-        }else{
+        } else {
           if (this.data.entity.code == "fyccr") {
             wx.navigateTo({
-              url: "../addOrUpdate/fyccr"
+              url: "../addOrUpdate/fyccr?jc=" + JSON.stringify(this.data.entity)
             })
           } else {
             wx.navigateTo({
@@ -79,13 +87,13 @@ Page({
           }
         }
       },
-      fail:fai=>{
+      fail: fai => {
         console.log(fai)
       }
     })
   },
 
-  show_sub_menu:function(e){
+  show_sub_menu: function (e) {
     this.data.list[e.currentTarget.dataset.index].show = !this.data.list[e.currentTarget.dataset.index].show
     this.setData({
       list: this.data.list
@@ -93,12 +101,12 @@ Page({
   },
 
   //去子菜单的列表页
-  goToSonList:function(e){
-    var arr_index=e.currentTarget.dataset.index.split(",")
+  goToSonList: function (e) {
+    var arr_index = e.currentTarget.dataset.index.split(",")
     //,waresId:商家id，sonObj子菜单obj
     var para = "waresId=" + this.data.list[arr_index[0]].waresId + "&sonObj=" + JSON.stringify(this.data.list[arr_index[0]].mapList[arr_index[1]])
     wx.navigateTo({
-      url: "../secondLevel/list?"+para
+      url: "../secondLevel/list?" + para
     })
   },
 
@@ -123,12 +131,12 @@ Page({
   touchmove: function (e) {
     var index = e.currentTarget.dataset.index,//当前索引
 
-    startX = this.data.startX,//开始X坐标
-    startY = this.data.startY,//开始Y坐标
-    touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
-    touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
-    //获取滑动角度
-    angle = this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
+      startX = this.data.startX,//开始X坐标
+      startY = this.data.startY,//开始Y坐标
+      touchMoveX = e.changedTouches[0].clientX,//滑动变化坐标
+      touchMoveY = e.changedTouches[0].clientY,//滑动变化坐标
+      //获取滑动角度
+      angle = this.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
 
     this.data.list.forEach(function (v, i) {
       v.isTouchMove = false
@@ -184,16 +192,14 @@ Page({
    */
   onShow: function () {
     getData.req("collection/ware_lsit.jspx", "POST", { key: app.globalData.key, ctgId: this.data.entity.ctgId }, res => {
-      if (res.data.data.length>0 && res.data.data[0].mapList.length>0){
-        res.data.data.forEach(v=>{
-          v.show=false
+      if (res.data.data.length > 0 && res.data.data[0].mapList.length > 0) {
+        res.data.data.forEach(v => {
+          v.show = false
         })
       }
-      if (this.data.entity.code !='fyccr'){
-        this.setData({
-          list: res.data.data
-        })
-      }
+      this.setData({
+        list: res.data.data
+      })
     })
   },
 

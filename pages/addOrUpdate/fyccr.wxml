@@ -7,7 +7,7 @@
         <view class="tr_view" >
           <view class="td_left"><text space="ensp">身份证号：</text></view>
           <view class="td_right">
-            <input type="text" placeholder="请输入身份证号" bindinput="input_value" data-id="IDnumber" value="{{IDnumber}}"/>
+            <input type="text" placeholder="请输入身份证号" bindinput="input_value" data-id="iDnumber" value="{{iDnumber}}"/>
           </view>
         </view>
         <view class="tr_view" >
