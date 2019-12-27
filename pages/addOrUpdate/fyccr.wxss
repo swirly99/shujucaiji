@@ -20,7 +20,7 @@ swiper,swiper-item{
 }
 .td_left{
   float:left;
-  width:30%;
+  width:32%;
   line-height:100rpx;
   height:100%;
   text-align:left;
@@ -31,7 +31,7 @@ swiper,swiper-item{
 .td_right{
   float:left;
   height:100%;
-  width:70%;
+  width:68%;
 }
 .td_right input{
   width:100%;

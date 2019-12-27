@@ -11,9 +11,7 @@ Page({
     sousuo_data: '',
     startX: 0, //开始坐标
     startY: 0,
-    list: [
-      { name: '测试', id: 1, isTouchMove: false }
-    ],
+    list: [],
     SubList: [],
     imgShow: false,
     entity: null
@@ -29,11 +27,10 @@ Page({
   update: function (e) {
     this.data.entity.wid = this.data.list[e.currentTarget.dataset.index].waresId
     if (this.data.entity.code == "fyccr") {
-      // jc.id = this.data.list[e.currentTarget.dataset.index].waresId
       wx.navigateTo({
         url: "../addOrUpdate/fyccr?jc=" + JSON.stringify(this.data.entity)
-      // console.log(this.data.list[e.currentTarget.dataset.insdex])
       })
+      // console.log(this.data.entity,1)
       return
     }
     wx.navigateTo({
@@ -50,7 +47,7 @@ Page({
   },
 
   add: function (e) {
-    delete this.data.entity.wid
+    // delete this.data.entity.wid
     wx.getSetting({
       success: res => {
         if (!res.authSetting["scope.userLocation"]) {

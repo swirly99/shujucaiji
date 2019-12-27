@@ -319,9 +319,11 @@ Page({
           })
 
           this.data.region = [this.data.province, this.data.city, this.data.country]
+          this.data.region
           this.setData({
             status_item: this.data.status_item,
-            region: this.data.region,
+            region: this.region,
+            // this.data.region = [this.data.province, this.data.city, this.data.country]
             imgs: imgs_arr
           })
           this.finishing_imgs();
